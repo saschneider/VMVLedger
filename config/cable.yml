@@ -1,0 +1,22 @@
+#
+# Action cable configuration file.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+default: &default
+  adapter: async
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+docker:
+  <<: *default
+
+production:
+  <<: *default

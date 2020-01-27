@@ -1,0 +1,4 @@
+= form.form_group do
+  = link_to t('shared.controls.cancel'), :back, class: 'btn btn-primary'
+  = form.button t('shared.controls.reset'), render_as_button: true, type: 'reset', class: 'btn btn-primary'
+  = form.submit t('shared.controls.save'), class: 'btn btn-primary'

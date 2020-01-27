@@ -1,0 +1,33 @@
+/*
+ * Home SCSS file.
+ *
+ * @author Matthew Casey
+ *
+ * (c) University of Surrey 2019
+ */
+
+body.home {
+
+  @include media-breakpoint-down(md) {
+    .jumbotron {
+      p.lead {
+        font-size: 1em;
+      }
+    }
+  }
+
+  .btn-election {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 52px;
+    line-height: 16px;
+    overflow-y: hidden;
+  }
+
+  .logo {
+    max-height: 140px;
+    max-width: 300px;
+    padding: 20px;
+  }
+}

@@ -1,0 +1,272 @@
+#
+# Models English locale file.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+en:
+  activerecord:
+    attributes:
+      audit_log:
+        user_id: "User"
+        action: "Action"
+        status: "Status"
+        created_at: "When"
+
+      content:
+        sequence: "Row"
+
+      election:
+        name: "Name"
+        public: "Publicly Viewable?"
+        updated_at: "Last Updated"
+        survey_url: "Survey URL"
+
+      file_type:
+        sequence: "Sequence"
+        action: "Action"
+        content_type: "Content Type"
+        convert_to_content: "Convert to Content?"
+        description: "Description"
+        long_description: "Long Description"
+        content_description: "Content Description"
+        hint: "File Hint"
+        name: "Name"
+        needed_for_verify: "Used to Verify Votes?"
+        needed_for_status: "Used to Verify Voting Status?"
+        public: "Publicly Viewable?"
+        map_select: "%{sequence}. %{name}%{public}"
+        map_select_public: " (Public)"
+        stage: "Stage"
+        no_action:
+          name: "No Action"
+          icon: "lock"
+        browse:
+          name: "Browse"
+          icon: "list-alt"
+        verificatum_proof_of_knowledge:
+          name: "Verificatum"
+          icon: "check"
+        vmv_proof_of_knowledge:
+          name: "Proof of Knowledge"
+          icon: "check-double"
+        no_stage:
+          name: "No Stage"
+          description: "No stage."
+        setup:
+          name: "Election Setup"
+          description: "Created when the election is first setup:"
+        pre_election:
+          name: "Pre-election Voter Setup"
+          description: "Created when voters are allocated to the election:"
+        post_election:
+          name: "Post-election"
+          description: "Created after the election to encrypt votes and then publish anonymous decrypted votes:"
+
+      invitation:
+        email: "Email"
+        redeemed: "Redeemed?"
+        creator: "Sent By"
+        created_at: "Sent"
+
+      job:
+        creating: "Creating"
+        pending: "Pending"
+        success: "Success"
+        failed: "Failed"
+
+      service:
+        ui_enabled: "Enable the User Interface?"
+        jobs_enabled: "Enable Job Processing?"
+        nodes: "Quorum Node URLs"
+        download_from_blockchain: "Download from Blockchain?"
+        retrieve_interval: "Retrieval Interval"
+        verify_email: "Verification Report Email"
+        full_length_field: "Full Length Fields"
+
+      upload:
+        address: "Blockchain Contract"
+        blockchain: "Blockchain"
+        checksum: "Checksum"
+        election_id: "Election"
+        file: "File"
+        file_type_id: "File Type"
+        filename: "File"
+        status: "Status"
+        public: "Publicly Viewable?"
+        retrieved_at: "Last Retrieved"
+        retrieved: "Retrieved"
+
+      user:
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Confirm Password"
+        current_password: "Current Password"
+        forename: "Forename"
+        surname: "Surname"
+        time_zone: "Time Zone"
+        terms_of_service: "I agree to the terms of the privacy policy"
+        remember_me: "Keep me logged in"
+        current_sign_in_at: "Last Login"
+
+    errors:
+      models:
+        upload:
+          attributes:
+            public: "^Cannot be made publicly viewable as the file type is not public"
+            file:
+              attached: "is not attached"
+
+    help:
+      user:
+        password_confirmation: "Your password must include at least one lowercase letter, one uppercase letter, one digit and be at least eight characters long."
+        terms_of_service_html: "See the %{url}."
+        terms_of_service_url: "privacy policy"
+
+    titles:
+      election:
+        name: "The unique name of the election."
+        public: "Is the election publicly viewable?"
+        survey_url: "Optional URL to an external survey used once a voter has verified their vote."
+
+      file_type:
+        action: "What action should be available for the file?"
+        content_type: "The expected content type of the file."
+        convert_to_content: "Can the content be converted for browsing?"
+        description: "A brief description of the file type used as a summary."
+        long_description: "A longer description of the file type used when viewing a file of the specified type."
+        content_description: "A longer description of the file type when viewing a single record from a file of the specified type."
+        hint: "A hint as to what the file could be."
+        name: "The unique name of the file type."
+        needed_for_verify: "Is this file type used to verify votes?"
+        needed_for_status: "Is this file type used to verify the status of voting for a voter?"
+        public: "Is the file publicly viewable?"
+        stage: "What stage of the election is the file type used for?"
+
+      invitation:
+        email: "The email address of the person you want to invite."
+
+      service:
+        ui_enabled: "Enable the user interface?"
+        jobs_enabled: "Enable job processing?"
+        nodes: "A comma-separated list of the Quorum node URLs."
+        download_from_blockchain: "Allow public users to download directly from the blockchain?"
+        retrieve_interval: "At what interval (in ISO8601 format) should blockchain files be automatically retrieved?"
+        verify_email: "Optional email address for users to report verification issues with their vote."
+        full_length_field: "Optional comma separated content fields which are displayed in the table full length without truncation."
+
+      upload:
+        address: "What is the associated blockchain contract address for the upload? Only public file types are written to the blockchain."
+        blockchain: "The file that was committed to the blockchain."
+        checksum: "The checksum of the file uploaded to the blockchain."
+        election_id: "The associated election for the upload."
+        file: "The file that was uploaded. This is the initial version of the file available before it was committed to the blockchain."
+        file_type_id: "The associated file type for the upload."
+        status: "The status of the upload: has it been committed to the blockchain?"
+        public: "Is the file publicly viewable?"
+
+      user:
+        email: "Email address."
+        password: "The password associated with the email address.  This must include at least one lowercase letter, one uppercase letter, one digit and be at least eight characters long."
+        password_confirmation: "Confirm the password."
+        current_password: "Your current password to confirm the changes."
+        forename: "Forename."
+        surname: "Surname."
+        time_zone: "Time zone used for displaying times."
+        terms_of_service: "Confirm you agree with the privacy policy."
+        remember_me: "By ticking this box, we will use a cookie to keep you logged in on this computer."
+
+    validators:
+      not_a_duration: "is not an ISO8601 duration"
+      not_a_url: "is not a HTTP URL"
+
+  audit_logs:
+    index:
+      instructions: "The following events have been audited:"
+      no_audit_logs: "There are no audit events."
+
+  contents:
+    messages:
+      no_blockchain_attachment: "Cannot view content as no blockchain version of the file is available."
+    blockchain_or_attachment:
+      download: "You can download the data as a %{extension} file '%{filename}':"
+    content:
+      record: "The content of the selected record is as follows:"
+    list:
+      no_content: "We are currently processing this data and getting it ready so that you can view it. This will take a short while, so please try again shortly."
+      select: "Browse through the data below. To see more detail, select a row:"
+
+  elections:
+    list:
+      data_available: "Election Data Available"
+      verification_available: "Voting Data Available"
+      view: "View Verification Data"
+    show:
+      instructions: "The election's details are:"
+      uploads_html: "If you have voted in this %{name} election, the tables below contain all the related verification data.  This includes the cryptographic parameters, public keys, commitments, tracker numbers, encrypted votes, and proofs of correct processing. Further explanation of the data listed below is available %{url}."
+      here: "here"
+      no_uploads: "There is no information available for this election yet. Please try again later."
+    index:
+      instructions: "The following provides a list of all of the elections that are taking part in verification trials. Verification data for elections can be viewed on these pages. This verification data is stored in an immutable record (supported by distributed ledger technology) when the election is run:"
+      no_elections: "No elections are available."
+    edit:
+      instructions: "Modify the election's details:"
+    new:
+      instructions: "Enter the election's details:"
+
+  file_types:
+    show:
+      instructions: "The file type's details are:"
+    index:
+      instructions: "The following are the registered file types:"
+      no_file_types: "No file types are available."
+    edit:
+      instructions: "Modify the file type's details:"
+    new:
+      instructions: "Enter the file type's details:"
+
+  invitations:
+    messages:
+      email: "An email will be sent to the invited email address."
+      email_updated: "A new email will be sent to the changed email address."
+    index:
+      instructions: "The following are the invitations that have been sent:"
+      no_invitations: "No invitations have been sent."
+    edit:
+      instructions: "Modify the invitation's details:"
+    new:
+      instructions: "Enter the invitation's details:"
+
+  services:
+    edit:
+      instructions: "Modify the configuration options:"
+
+  uploads:
+    messages:
+      no_blockchain_attachment: "Cannot download blockchain version of the file."
+      no_download_attachment: "Cannot download cached version of the file."
+      recommit: "The upload has been re-submitted for committing to the blockchain."
+      retrieve: "The upload has been re-submitted for retrieval from the blockchain."
+    show:
+      instructions: "The upload's details are:"
+    index:
+      instructions: "The following are the registered uploads:"
+      no_uploads: "No upload are available."
+    edit:
+      instructions: "Modify the upload's details:"
+    new:
+      instructions: "Enter the upload's details:"
+    upload:
+      recommit: "Re-submit this upload for committing to the blockchain?"
+      retrieve: "Re-submit this upload for retrieval from the blockchain?"
+
+  users:
+    messages:
+      not_invited: " - sorry, but you cannot sign up because no invitation has been sent to the email you provided."
+    edit:
+      instructions: "Modify the user's details:"
+    index:
+      instructions: "The following are the registered users:"
+      no_users: "There are no registered users."

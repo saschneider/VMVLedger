@@ -1,0 +1,29 @@
+- if audit_logs.count > 0
+  = paginate audit_logs, count: audit_logs.total_count, remote: true
+  %p.d-flex.flex-wrap.align-items-center.justify-content-end.h-100
+    %span.small= t('shared.controls.sort')
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:created_at, t('activerecord.attributes.audit_log.created_at'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:action, t('activerecord.attributes.audit_log.action'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:status, t('activerecord.attributes.audit_log.status'))
+
+  .row
+    .table-responsive
+      %table.table.table-hover.table-sm.table-bordered
+        %thead.thead-light
+          %tr
+            %th.text-center= sortable(:created_at, t('activerecord.attributes.audit_log.created_at'))
+            %th.text-center= sortable(:user_id, t('activerecord.attributes.audit_log.user_id'))
+            %th.text-center= sortable(:action, t('activerecord.attributes.audit_log.action'))
+            %th.text-center= sortable(:status, t('activerecord.attributes.audit_log.status'))
+        %tbody
+          - audit_logs.each do |audit_log|
+            %tr
+              %td.text-center= l(audit_log.created_at)
+              %td.text-center
+                = audit_log.user.fullname if audit_log.user
+              %td{ title: audit_log.action }= truncate(audit_log.action, length: 50)
+              %td.text-center= audit_log.status
+
+  - if audit_logs.size > 1
+    :javascript
+      VMV.Table.stickyHeader('.table-responsive');

@@ -1,0 +1,13 @@
+- show_edit = defined?(options) ? options[:show_edit] : true
+- show_edit ||= true
+- show_destroy = defined?(options) ? options[:show_destroy] : true
+- show_destroy ||= true
+
+= form.form_group do
+  = link_to t('shared.controls.back'), :back, class: 'btn btn-primary'
+
+  - if show_edit && defined?(model) && model && policy(model).edit?
+    = link_to t('shared.controls.edit'), send("edit_#{model.model_name.singular}_path", model), class: 'btn btn-primary'
+
+  - if show_destroy && defined?(model) && model && name && policy(model).destroy?
+    = link_to t('shared.controls.destroy'), url_for(model), method: :delete, data: { confirm: t('shared.controls.confirm_destroy', model: model.model_name.singular.humanize.downcase, name: name) }, class: 'btn btn-danger'

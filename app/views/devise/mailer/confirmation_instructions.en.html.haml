@@ -1,0 +1,7 @@
+%p= "Dear #{@resource.forename.strip},"
+
+%p= "Thank you for completing your account details on #{t('app_title')}. In order to log in to #{t('app_title')}, all you need to do now is confirm your email address. To do this, please follow on the following link:"
+
+%p= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+
+%p Once you've done this, just log in and get started.

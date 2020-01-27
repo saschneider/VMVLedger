@@ -1,0 +1,53 @@
+- if current_user.administrator?
+  %li.nav-item.dropdown
+    = link_to '#', class: 'nav-link dropdown-toggle', id: 'navbar_admin', role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false } do
+      %span.hide-when-collapsed
+        = fa_icon 'cogs lg', title: t('.administration')
+      %span.hide-when-not-collapsed
+        = fa_icon 'cogs lg fw', title: t('.administration')
+        = t('.administration')
+
+    .dropdown-menu.dropdown-menu-right{ aria: { labelledby: "navbar_admin" } }
+      %p.pl-3.text-nowrap.text-muted= t('.services')
+
+      - if policy(Service).edit?
+        - service = Service.get_service
+        = link_to_active edit_service_path(service), class: "#{service.ui_enabled? && service.jobs_enabled? ? '' : 'bg-muted-danger'}" do
+          = fa_icon 'cog fw'
+          = t('.service')
+
+      - if policy(FileType).index?
+        = link_to_active file_types_path do
+          = fa_icon 'file fw'
+          = t('.file_types')
+
+      - if policy(AuditLog).index?
+        = link_to_active audit_logs_path do
+          = fa_icon 'check-square fw'
+          = t('.audit_logs')
+
+      .dropdown-divider
+      %p.pl-3.text-nowrap.text-muted= t('.election_data')
+
+      - if policy(Election).index?
+        = link_to_active elections_path do
+          = fa_icon 'cog fw'
+          = t('.elections')
+
+      - if policy(Upload).index?
+        = link_to_active uploads_path do
+          = fa_icon 'file fw'
+          = t('.uploads')
+
+      .dropdown-divider
+      %p.pl-3.text-nowrap.text-muted= t('.accounts')
+
+      - if policy(User).index?
+        = link_to_active users_path do
+          = fa_icon 'users fw'
+          = t('.users')
+
+      - if policy(Invitation).index?
+        = link_to_active invitations_path do
+          = fa_icon 'envelope fw'
+          = t('.invitations')

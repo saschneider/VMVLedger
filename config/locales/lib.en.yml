@@ -1,0 +1,20 @@
+#
+# Lib English locale file.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+en:
+  quorum_helper:
+    create_contract_failed: "Failed to create Quorum contract via %{url}: %{message}"
+    get_contract_failed: "Failed to get Quorum contract via %{url}: %{message}"
+
+  quorum_file_helper:
+    file_wrapper:
+      failed_add: "Failed to add all required chunks: got %{actual} expected %{expected}"
+      timeout: "Timed out waiting for commit"
+      call_failed: "Failed to get call contract: %{message}"
+      invalid_indices: "Invalid index values detected: %{invalid}"
+      invalid_checksum: "Invalid checksum read from contract: %{read} does not match expected %{write}"

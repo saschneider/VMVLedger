@@ -1,0 +1,245 @@
+/*
+ * Page SCSS file.
+ *
+ * @author Matthew Casey
+ *
+ * (c) University of Surrey 2019
+ */
+
+$brand-height: 40px;
+$header-height: 70px;
+$footer-height: 88px;
+
+/*
+ * Page styles.
+ */
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  padding-top: $header-height;
+  margin-bottom: $footer-height;
+}
+
+
+.break-all {
+  word-break: break-all;
+}
+
+.progress {
+  height: 25px;
+}
+
+.sort-current.sort-asc:after {
+  padding-left: 5px;
+  content: "\25b2";
+}
+
+.sort-current.sort-desc:after {
+  padding-left: 5px;
+  content: "\25bc";
+}
+
+table a:hover {
+  text-decoration: none;
+}
+
+.table {
+  margin-bottom: 0;
+}
+
+.table-responsive {
+  overflow-y: auto;
+  margin-bottom: -2px;
+  border-bottom: 1px solid $table-border-color;
+
+  th {
+    position: sticky;
+    top: -1px;
+  }
+}
+
+/*
+ * Kaminari customisations.
+ */
+
+.pagination-sm .page-link {
+  line-height: 17.5px;
+}
+
+.pagination {
+  form button {
+    font-size: 12px;
+    line-height: 16px;
+    width: 60px;
+  }
+
+  .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 60px;
+  }
+}
+
+/*
+ * Header (including dropdown and navbar) styles.
+ */
+.bg-muted-danger {
+  background-color: lighten($danger, 30%);
+}
+
+.bg-muted-primary {
+  background-color: rgba(darken($primary, 30%), 0.2);
+}
+
+.btn-bottom {
+  left: unset;
+  right: 8px;
+  top: unset;
+  bottom: 8px;
+}
+
+.btn-transparent {
+  background-color: $transparent-btn-bg;
+  color: #FFF;
+  border-color: darken($transparent-btn-bg, 10%);
+}
+
+.btn-transparent:hover, .btn-transparent:focus, .btn-transparent:active, .btn-transparent.active, .open .dropdown-toggle.btn-transparent {
+  background-color: rgba($transparent-btn-bg, 100%);
+  color: #FFF;
+  border-color: rgba($transparent-btn-bg, 100%);
+}
+
+.dropdown-menu {
+  font-size: 0.9rem;
+}
+
+.dropdown-item {
+  padding: 0.25rem 1rem;
+}
+
+.navbar {
+  padding: 0.2rem 1rem;
+
+  &.navbar-bg {
+    background-color: $navbar-bg;
+    border-bottom: 1px solid $navbar-border-color;
+  }
+
+  .navbar-brand {
+    padding: 5px;
+    margin-right: 25px;
+
+    img {
+      height: $brand-height;
+    }
+  }
+
+  .nav-item.active {
+    background-color: $navbar-active-bg;
+    border-radius: 2px;
+  }
+
+  .nav-item:hover, .nav-item:active, .nav-item:focus {
+    background-color: $navbar-hover-bg;
+    border-radius: 2px;
+  }
+
+  @include media-breakpoint-down(xs) {
+    .hide-when-collapsed {
+      display: none !important;
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    .navbar-brand {
+      margin-right: 15px;
+    }
+
+    .hide-when-not-collapsed {
+      display: none !important;
+    }
+  }
+}
+
+@include media-breakpoint-down(md) {
+  .navbar-expand-md .navbar-nav .nav-link {
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+  }
+}
+
+.no-decoration {
+  text-decoration: none !important
+}
+
+/*
+ * Footer styles.
+ */
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: $footer-bg;
+  color: $footer-fg;
+
+  a {
+    color: $footer-link-fg;
+  }
+
+  a:hover, a:active, a:focus {
+    color: $footer-link-hover-fg;
+  }
+
+  p {
+    margin: 5px;
+  }
+}
+
+#copyright, #copyright p, #copyright a {
+  font-size: 13px;
+}
+
+@include media-breakpoint-down(sm) {
+  #copyright, #copyright p, #copyright a {
+    font-size: 11px;
+  }
+}
+
+#quick_links {
+  margin-top: 5px;
+  margin-bottom: 5px;
+
+  nav {
+    display: block;
+  }
+}
+
+/*
+ * Cookie notice styles.
+ */
+#cookie-notice {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 10px 20px;
+  background-color: $footer-bg;
+  color: $footer-fg;
+  border-top: 1px solid $footer-bg;
+  font-size: 16px;
+
+  a {
+    color: $footer-link-fg;
+  }
+
+  a:hover, a:active, a:focus {
+    color: $footer-link-hover-fg;
+  }
+
+  p {
+    padding: 0 20px;
+  }
+}

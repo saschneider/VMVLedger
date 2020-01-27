@@ -1,0 +1,29 @@
+- if file_types.count > 0
+  = paginate file_types, count: file_types.total_count, remote: true
+  %p.d-flex.flex-wrap.align-items-center.justify-content-end.h-100
+    %span.small= t('shared.controls.sort')
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:sequence, t('activerecord.attributes.file_type.sequence'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:name, t('activerecord.attributes.file_type.name'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:action, t('activerecord.attributes.file_type.action'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:stage, t('activerecord.attributes.file_type.stage'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:content_type, t('activerecord.attributes.file_type.content_type'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:public, t('activerecord.attributes.file_type.public'))
+  .row
+    - file_types.each do |file_type|
+      .col-lg-4.col-md-6.col-12.my-3
+        .card.text-white{ class: file_type.public? ? 'bg-primary' : 'bg-muted-primary' }
+          .card-header.d-flex.justify-content-between
+            %span= "#{file_type.sequence}. #{file_type.name}"
+            = render partial: 'shared/list_buttons', locals: { model: file_type, name: file_type.name, options: { css_class: 'text-white no-decoration' } }
+          .card-body.px-0
+            %p.card-title.d-flex.flex-row.rounded.mx-1
+              %span.col-5.text-left= t('activerecord.attributes.file_type.action')
+              %span.col-7.text-right= t("activerecord.attributes.file_type.#{file_type.action}.name")
+            %p.card-title.d-flex.flex-row.rounded.mx-1
+              %span.col-4.text-left= t('activerecord.attributes.file_type.stage')
+              %span.col-8.text-right= t("activerecord.attributes.file_type.#{file_type.stage}.name")
+            %p.card-title.d-flex.flex-row.rounded.mx-1
+              %span.col-6.text-left= t('activerecord.attributes.file_type.content_type')
+              %span.col-6.text-right= file_type.content_type
+            %p.card-title.d-flex.flex-row.mb-0
+              %span.col.text-center= link_to t('shared.controls.details'), file_type_path(file_type), class: 'btn btn-secondary p-0 w-100'

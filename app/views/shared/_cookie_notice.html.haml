@@ -1,0 +1,10 @@
+- if !cookies[:dismiss_cookie_notice] && !user_signed_in?
+  - cache @virtual_path, skip_digest: true do
+    #cookie-notice
+      .container-fluid#cookie-content
+        .row
+          .col-sm-7.col-md-8
+            %p.my-1= t('.cookie_notice')
+          .col-sm-5.col-md-4
+            %p.my-1.text-right= link_to t('.cookie_ok'), 'javascript:void(0)', class: 'btn btn-success', data: { 'dismiss-cookie-notice' => true, target: '#cookie-notice' }
+            %p.my-1.text-right= link_to t('.find_out'), privacy_path(anchor: 'cookies')

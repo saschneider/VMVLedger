@@ -1,0 +1,17 @@
+#
+# Datetime English GB locale file.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+en-GB:
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M:%S"
+      short: "%d/%m %H:%M"
+
+  date:
+    formats:
+      default: "%d/%m/%Y"

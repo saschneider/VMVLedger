@@ -1,0 +1,11 @@
+- specific_title [t('shared.controls.edit'), t('shared.titles.upload')]
+- add_breadcrumb "#{@upload.file_type.name}: #{t('shared.controls.edit')}", request.path
+- add_breadcrumb t('shared.titles.uploads'), :uploads_path
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1= "#{t('shared.controls.edit')}: #{t('shared.titles.upload')}"
+  %p.lead= t('.instructions')
+
+  = render partial: 'form', locals: { upload: @upload }

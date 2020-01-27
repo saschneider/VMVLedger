@@ -1,0 +1,16 @@
+- css_class = defined?(options) ? options[:css_class] : ''
+- show_edit = defined?(options) ? options[:show_edit] : true
+- show_edit ||= true
+- show_destroy = defined?(options) ? options[:show_destroy] : true
+- show_destroy ||= true
+
+.text-nowrap
+  - if show_edit && model && policy(model).edit?
+    = link_to send("edit_#{model.model_name.singular}_path", model), class: css_class do
+      = fa_icon 'pencil-alt lg', title: t('shared.controls.edit'), class: css_class
+      %span.sr-only= t('shared.controls.edit')
+
+  - if show_destroy && model && name && policy(model).destroy?
+    = link_to url_for(model), method: :delete, data: { confirm: t('shared.controls.confirm_destroy', model: model.model_name.singular.humanize.downcase, name: name) }, class: css_class do
+      = fa_icon 'trash-alt lg', title: t('shared.controls.destroy'), class: css_class
+      %span.sr-only= t('shared.controls.destroy')

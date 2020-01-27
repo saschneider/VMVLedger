@@ -1,0 +1,19 @@
+- specific_title [@content.sequence, @upload.file_type.name, @upload.election.name]
+- add_breadcrumb @content.sequence, request.path
+- add_breadcrumb @upload.file_type.name, upload_contents_path(@upload)
+- add_breadcrumb @upload.election.name, election_path(@upload.election)
+- add_breadcrumb t('shared.titles.elections'), :elections_path
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1= @upload.election.name
+  %h2= @upload.file_type.name
+  - if @upload&.file_type&.content_description
+    %p.lead!= @upload.file_type.content_description
+
+.container
+  = render partial: 'blockchain_or_attachment', locals: { upload: @upload }
+
+.container
+  = render partial: 'content', locals: { field_names: @field_names, content: @content }

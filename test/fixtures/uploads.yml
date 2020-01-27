@@ -1,0 +1,19 @@
+#
+# Uploads fixtures.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+election_parameters:
+  election: public_election
+  file_type: election_parameters
+  status: 0
+  public: true
+
+election_parameters_with_content:
+  election: public_election
+  file_type: election_parameters
+  status: 0
+  public: true

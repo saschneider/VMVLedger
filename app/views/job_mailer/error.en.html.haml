@@ -1,0 +1,9 @@
+%p Dear User,
+
+%p= "#{t('app_title')} has encountered an error at #{l(Time.current)}:"
+
+%p= @error.message
+- if @error.backtrace
+  %ul
+    - @error.backtrace.each do |trace|
+      %li= trace

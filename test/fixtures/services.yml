@@ -1,0 +1,12 @@
+#
+# Service fixtures.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+service:
+  ui_enabled: true
+  jobs_enabled: true
+  nodes: http://localhost:22000

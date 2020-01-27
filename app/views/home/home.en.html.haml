@@ -1,0 +1,49 @@
+- specific_title [t('shared.titles.home')]
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  .jumbotron.bg-white.border.mb-0.py-5
+    %h1.text-center Verify My Vote
+    %h4.text-center
+      Offers the opportunity to check your vote electronically
+    %p.lead.my-0.text-center
+      = fa_icon('check-circle lg', class: 'text-success')
+      != "Anonymised use of tracking numbers ensures <b>vote privacy</b>"
+    %p.lead.my-0.text-center
+      = fa_icon('check-circle lg', class: 'text-success')
+      != "Voters can check that their vote is included in the count <b>exactly as it was cast</b>"
+    %p.lead.my-0.text-center
+      = fa_icon('check-circle lg', class: 'text-success')
+      != "Publication of election audit data ensures that the <b>integrity of the ballot</b> can be independently confirmed"
+
+- if policy(Election).index? && @elections.count > 0
+  .container
+    %h3.text-center.pt-3 Recent verifiable elections:
+    .row
+      .col-lg
+      - @elections.each do |election|
+        .col-md.py-1
+          = link_to election.name, election_path(election), class: 'btn btn-primary w-100 btn-election'
+      .col-lg
+    %p.text-center.py-2= link_to 'See more...', elections_path
+
+- cache do
+  .container.h-100
+    %p.lead.text-center Built in partnership by:
+    .row.align-items-center.h-100
+      .col-xl-4.col-md-6.mx-auto.text-center
+        = link_to(t('surrey_web'), target: '_blank') do
+          = image_tag 'surrey.png', class: 'logo', title: t('surrey')
+      .col-xl-4.col-md-6.mx-auto.text-center
+        = link_to(t('kings_web'), target: '_blank') do
+          = image_tag 'kings.jpg', class: 'logo', title: t('kings')
+      .col-xl-4.col-md-6.mx-auto.text-center
+        = link_to(t('ers_web'), target: '_blank') do
+          = image_tag 'ers.jpg', class: 'logo', title: t('ers')
+      .col-xl-4.col-md-6.mx-auto.text-center
+        = link_to(t('pervasive_web'), target: '_blank') do
+          = image_tag 'pervasive.png', class: 'logo', title: t('pervasive')
+      .col-xl-4.col-md-6.mx-auto.text-center
+        = link_to(t('luxembourg_web'), target: '_blank') do
+          = image_tag 'luxembourg.png', class: 'logo', title: t('luxembourg')

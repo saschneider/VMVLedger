@@ -1,0 +1,16 @@
+- specific_title [@upload.file_type.name, @upload.election.name]
+- add_breadcrumb @upload.file_type.name, request.path
+- add_breadcrumb @upload.election.name, election_path(@upload.election)
+- add_breadcrumb t('shared.titles.elections'), :elections_path
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1= @upload.election.name
+  %h2= @upload.file_type.name
+  - description = @upload&.file_type&.long_description
+  - description = @upload&.file_type&.description if description.blank?
+  - unless description.blank?
+    %p.lead!= description
+
+= render partial: @upload.file_type.action, locals: { upload: @upload, contents: @contents, field_names: @field_names }

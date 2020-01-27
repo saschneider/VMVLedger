@@ -1,0 +1,40 @@
+#
+# Database configuration file.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+default: &default
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 10000
+  encoding: utf8
+
+sqlite: &sqlite
+  adapter: sqlite3
+  database: db/<%= Rails.env %>.sqlite3
+
+postgresql: &postgresql
+  adapter: postgresql
+  database: <%= Rails.application.credentials.dig(Rails.env.to_sym, :postgresql, :database) %>
+  username: <%= Rails.application.credentials.dig(Rails.env.to_sym, :postgresql, :username) %>
+  password: <%= Rails.application.credentials.dig(Rails.env.to_sym, :postgresql, :password) %>
+  host:     <%= Rails.application.credentials.dig(Rails.env.to_sym, :postgresql, :host) %>
+  port:     <%= Rails.application.credentials.dig(Rails.env.to_sym, :postgresql, :port) %>
+
+development:
+  <<: *default
+  <<: *sqlite
+
+test:
+  <<: *default
+  <<: *sqlite
+
+docker:
+  <<: *default
+  <<: *postgresql
+
+production:
+  <<: *default
+  <<: *postgresql

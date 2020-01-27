@@ -1,0 +1,32 @@
+- if uploads.count > 0
+  = paginate uploads, count: uploads.total_count, remote: true if uploads.respond_to?(:total_pages)
+  - sortable = false
+  - sortable = true unless defined?(unsortable)
+  - if sortable
+    %p.d-flex.flex-wrap.align-items-center.justify-content-end.h-100
+      %span.small= t('shared.controls.sort')
+      %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable('file_types.sequence'.to_sym, t('activerecord.attributes.upload.file_type_id'))
+  - @table_count ||= 0
+  - @table_count += 1
+  - id = "table-#{@table_count}"
+  .row.mb-4
+    .table-responsive{ id: id }
+      %table.table.table-hover.table-sm.table-bordered
+        %thead.thead-light
+          %tr
+            - unless restricted
+              %th
+              %th.text-center= sortable ? sortable(:election_id, t('activerecord.attributes.upload.election_id')) : t('activerecord.attributes.upload.election_id')
+            %th.text-center= sortable ? sortable('file_types.sequence'.to_sym, t('activerecord.attributes.upload.file_type_id')) : t('activerecord.attributes.upload.file_type_id')
+            %th.text-center= t('activerecord.attributes.file_type.description')
+        %tbody
+          - view_params = [] unless defined?(view_params)
+          - uploads.each_with_index do |upload, index|
+            - extracted_params = view_params[index] if view_params && (view_params.size > index)
+            %tr{ class: !upload.file_type.public? ? 'bg-muted-danger' : upload.public? ? '' : 'bg-muted-primary', data: { href: upload_contents_path(upload, extracted_params) } }
+              %td= upload.file_type.name
+              %td= upload.file_type.description
+
+  - if uploads.size > 3
+    :javascript
+      VMV.Table.stickyHeader(".table-responsive##{id}", true);

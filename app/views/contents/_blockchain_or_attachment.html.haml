@@ -1,0 +1,5 @@
+%p
+  - extension = File.extname(upload.file.filename.to_s).reverse.chomp('.').reverse.upcase
+  = t('.download', extension: extension, filename: upload.file.filename)
+  - url = Service.get_service.download_from_blockchain? ? blockchain_upload_path(upload) : download_upload_path(upload)
+  = link_to(t('shared.controls.download'), url, class: 'btn btn-sm btn-primary')

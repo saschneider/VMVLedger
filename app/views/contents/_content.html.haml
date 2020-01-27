@@ -1,0 +1,12 @@
+- unless defined?(no_instructions) && no_instructions
+  %p= t('.record')
+= bootstrap_form_for(content, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9') do |form|
+  - field_names.each_with_index do |field_name, i|
+    - unless field_name.nil?
+      - model_field = Content.field_index_to_sym(i)
+      - value = content.send(model_field)
+      - rows = value.nil? ? 1 : [(value.length / 80.0).ceil, 1].max
+      = form_field(form, :text_area, model_field, label: t("fields.#{field_name}", default: field_name.titleize), control_col: 'col-sm-9', autofocus: i == 0, rows: rows, disabled: true)
+
+  - unless defined?(no_button) && no_button
+    = render partial: 'shared/show_buttons', locals: { form: form, options: { show_edit: false, show_destroy: false } }

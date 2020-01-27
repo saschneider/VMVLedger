@@ -1,0 +1,117 @@
+#
+# Shared English locale file.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+en:
+  shared:
+    controls:
+      asc: "Sort ascending"
+      back: "Back"
+      browse: "Browse"
+      cancel: "Cancel"
+      close: "Close"
+      confirm: "Confirm"
+      confirm_destroy: "Are you sure you want to destroy %{model} '%{name}'?"
+      desc: "Sort descending"
+      destroy: "Destroy"
+      details: "Details"
+      download: "Download"
+      edit: "Edit"
+      first: "First"
+      last: "Last"
+      mandatory: "* denotes a mandatory field."
+      "na": "N/A"
+      new: "New"
+      next: "Next"
+      "no": "No"
+      page: "Page:"
+      items: "Items:"
+      items_count: "Total %{count}"
+      page_navigation: "Page navigation"
+      previous: "Previous"
+      recommit: "Re-commit"
+      retrieve: "Retrieve"
+      reset: "Reset"
+      save: "Save"
+      send: "Send"
+      sort: "Sort:"
+      toggle: "Toggle navigation"
+      view: "View"
+      "yes": "Yes"
+
+    cookie_notice:
+      cookie_notice: "We have placed cookies on your device to help us provide the best possible user experience. You can change your cookie settings at any time. Otherwise, by using this site, we assume that you are happy for us to store and access cookies on your device."
+      cookie_ok: "I'm happy to use cookies"
+      find_out: "Find out more"
+
+    footer:
+      copyright_html: "&copy; %{year} %{copyright}"
+      copyright: "University&nbsp;of&nbsp;Surrey, King's&nbsp;College&nbsp;London and Electoral&nbsp;Reform&nbsp;Services, powered by Pervasive&nbsp;Intelligence&nbsp;Ltd"
+
+    messages:
+      created: "Record successfully created."
+      updated: "Record successfully updated."
+      destroyed: "Record successfully destroyed."
+      not_destroyed: "Record could not be destroyed."
+      verify_report: "Thank you for reporting an issue with your vote. ERS will be in contact with you shortly."
+      verify_not_report: "Unfortunately we could not report an issue with your vote because the provided data is incorrect. Please try verifying your vote again."
+
+    menu_account:
+      edit: "Edit user account"
+      logout: "Logout"
+      forgotten_password: "Forgotten your password?"
+      sign_up: "Sign up for an account"
+      resend_confirmation: "Re-send your account confirmation"
+      resend_unlock: "Re-send your account unlock"
+      account: "Account"
+
+    menu_admin:
+      accounts: "Accounts"
+      administration: "Administration"
+      audit_logs: "View audit logs"
+      election_data: "Elections"
+      elections: "Edit elections"
+      file_types: "Edit file types"
+      invitations: "Invite other users"
+      services: "Configuration"
+      service: "Configuration options"
+      uploads: "Edit uploads"
+      users: "Edit user accounts"
+
+    titles:
+      about: "About"
+      audit_logs: "Audit Logs"
+      breadcrumb: "Breadcrumb"
+      change_password: "Change Password"
+      confirm: "Are you sure?"
+      confirmation: "Re-send Account Confirmation"
+      documents: "Documents"
+      election: "Election"
+      elections: "Elections"
+      faq: "Frequently Asked Questions"
+      file_type: "File Type"
+      file_types: "File Types"
+      forgotten_password: "Forgotten Password"
+      home: "Home"
+      login: "Login"
+      introduction: "Introduction"
+      invitation: "Invitation"
+      invitations: "Invitations"
+      privacy: "Privacy"
+      profile: "Profile"
+      report_my_vote: "Report My Vote"
+      scroll_to_top: "Scroll to Top"
+      service: "Configuration"
+      sign_up: "Sign Up"
+      status: "Vote Status"
+      unlock: "Unlock Account"
+      upload: "Upload"
+      uploads: "Uploads"
+      users: "Users"
+      user: "User"
+      verifiable: "Verifiable Voting"
+      verify: "Verify Vote"

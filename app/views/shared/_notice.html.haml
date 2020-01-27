@@ -1,0 +1,25 @@
+- flash.each do |key, value|
+  - if !value.blank? && value.is_a?(String)
+    .container
+      .alerts
+        .alert.alert-dismissible.fade.show.lead{ role: 'alert', class: "alert-#{key == 'alert' ? 'danger' : 'info'}"}
+          = value
+          = button_tag type: 'button', class: 'close', 'data-dismiss' => 'alert', 'aria-label' => t('shared.controls.close') do
+            %span{'aria-hidden' => 'true'} &times;
+
+- model = nil
+- model = resource if defined?(resource)
+- model = @model if defined?(@model) && !@model.nil? && !defined?(resource)
+- unless model.nil?
+  - unless model.errors.empty?
+    - messages = model.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
+    - sentence = t("errors.messages.not_saved", count: model.errors.count, resource: model.class.model_name.human.downcase)
+
+    .container
+      .alerts
+        .alert.alert-danger.alert-dismissible.fade.show.lead{role: 'alert'}
+          = button_tag type: 'button', class: 'close', 'data-dismiss' => 'alert', 'aria-label' => t('shared.controls.close') do
+            %span{'aria-hidden' => 'true'} &times;
+          != sentence
+          %ul
+            != messages

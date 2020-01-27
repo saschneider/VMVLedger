@@ -1,0 +1,28 @@
+- specific_title [@election.name, t('shared.titles.election')]
+- add_breadcrumb @election.name, request.path
+- add_breadcrumb t('shared.titles.elections'), :elections_path
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1= @election.name
+  - if user_signed_in?
+    %p.lead= t('.instructions')
+    = render partial: 'election', locals: { election: @election }
+    %hr
+
+  - unless @election.description.blank?
+    %p.lead= @election.description
+
+  - if @uploads.count > 0
+    %p= t('.uploads_html', name: @election.name, url: link_to(t('.here'), asset_path('vmv.pdf')))
+  - else
+    %p= t('.no_uploads')
+
+- FileType.stages.each do |stage|
+  - uploads = @uploads.select { |upload| upload.file_type.stage.to_sym == stage[0].to_sym }
+  - if uploads.size > 0
+    .container
+      %h2= t("activerecord.attributes.file_type.#{stage[0]}.name")
+      %p.lead= t("activerecord.attributes.file_type.#{stage[0]}.description")
+      = render partial: 'uploads/list_table', locals: { uploads: uploads, restricted: true, unsortable: true }

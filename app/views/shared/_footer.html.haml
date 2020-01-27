@@ -1,0 +1,13 @@
+- cache [@virtual_path, Date.today], skip_digest: true do
+  %footer
+    .container
+      %section#quick_links
+        %nav.text-center
+          = link_to t('shared.titles.home'), root_path
+          = '|'
+          = link_to t('shared.titles.privacy'), privacy_path
+          = '|'
+          = link_to t('shared.titles.login'), new_user_session_path
+
+      %section#copyright
+        %p.text-center= t('.copyright_html', year: Date.today.year, copyright: link_to(t('.copyright').html_safe, t('surrey_web')))

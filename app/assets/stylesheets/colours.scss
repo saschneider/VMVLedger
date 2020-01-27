@@ -1,0 +1,36 @@
+/*
+ * Colours SCSS file.
+ *
+ * @author Matthew Casey
+ *
+ * (c) University of Surrey 2019
+ */
+
+/*
+ * Brand colours.
+ */
+
+$theme-colors: (
+    "primary": lighten(rgb(58, 90, 115), 10%),
+    "secondary": lighten(rgb(58, 90, 115), 25%)
+);
+
+// Button colours.
+$transparent-btn-bg: rgba(220, 53, 69, 0.4);
+
+// Navbar colours.
+$navbar-bg: white;
+$navbar-active-bg: #eee;
+$navbar-hover-bg: lighten(#eee, 5%);
+$navbar-border-color: #eee;
+$navbar-active-fg: #fff;
+
+// Footer colours.
+$footer-bg: #202020;
+$footer-fg: darken(white, 15%);
+$footer-link-fg: darken(white, 15%);
+$footer-link-hover-fg: white;
+
+// Banner colours.
+$banner-overlay-bg: rgba(0, 0, 0, 0.65);
+$banner-overlay-fg: white;

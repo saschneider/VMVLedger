@@ -1,0 +1,75 @@
+- specific_title [ t('shared.titles.faq') ]
+- add_breadcrumb t('shared.titles.faq'), request.path
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1= t('shared.titles.faq')
+  %p Click on the questions below to reveal the answers.
+
+  #accordion
+    .card
+      .card-header#headingVoted
+        .mb-0
+          %button.btn.btn-link.btn-lg{ data: { toggle: "collapse", target: "#collapseVoted" }, aria: { expanded: "true", controls: "collapseVoted" } }
+            How do you know how I voted?
+
+      #collapseVoted.collapse{ aria: { labelledby: "headingVoted" }, data: { parent: "#accordion" } }
+        .card-body
+          %p
+            We don't.
+          %p
+            - if @vote_record && @uploads
+              Everybody knows that the voter who was assigned tracker number
+              %b= @vote_record.send(Content.field_index_to_sym(1))
+              voted for
+              %b= @vote_record.send(Content.field_index_to_sym(0))
+              (in fact, everybody knows each vote for every tracker number, from
+              != "#{link_to('this table', upload_contents_path(@uploads.last))},"
+              which allows you to check the validity of the announced result), but only you know who that voter is. (ERS also knows, but this is independent to us.)
+            - else
+              Everybody knows each vote for every tracker number, but only you know who that voter is. (ERS also knows, but this is independent to us.)
+          %p
+            The
+            %i alpha
+            and
+            %i beta
+            parameters in the link you clicked form an encryption of your tracker number. In an ideal world, you would hold the decryption key allowing
+            you to retrieve your tracker number and look up your vote in the table. In this trial run, we manage your keys for you, to protect your vote from potential
+            breaches into ERS's systems. You can find out more about the design of the system, and the strict separation we enforce between the trust domain for privacy
+            and the trust domain for verifiability in our
+            != "#{link_to('documentation', documents_path)}."
+
+          %p
+            The short version is: ERS knows how you voted, but cannot modify anyone's vote or the results without a chance of being detected; we do not know how you
+            voted, and therefore cannot modify your vote without being detected.
+
+    - if @vote_record
+      .card
+        .card-header#headingReport
+          .mb-0
+            %button.btn.btn-link.btn-lg{ data: { toggle: "collapse", target: "#collapseReport" }, aria: { expanded: "true", controls: "collapseReport" } }
+              What if the checked vote doesn't match what I cast?
+
+        #collapseReport.collapse{ aria: { labelledby: "headingReport" }, data: { parent: "#accordion" } }
+          .card-body
+            %p
+              Please report this to
+              != "#{link_to('ERS', verify_report_my_vote_path(election: params[:election], beta: params[:beta], tracker: params[:tracker]))}."
+
+    .card
+      .card-header#headingRecords
+        .mb-0
+          %button.btn.btn-link.btn-lg{ data: { toggle: "collapse", target: "#collapseRecords" }, aria: { expanded: "true", controls: "collapseRecords" } }
+            Want to explore the election data?
+
+      #collapseRecords.collapse{ aria: { labelledby: "headingRecords" }, data: { parent: "#accordion" } }
+        .card-body
+          %p
+            If you would like, you can browse through the published election data which has been used for verification by selecting a row from the following table.
+            - if @vote_record
+              In the displayed data, the rows corresponding to your tracker number and your commitment have been highlighted (you may have to scroll through to find them):
+          - view_params = nil
+          - if (params[:beta] || params[:tracker]) && @vote_record
+            - view_params = [{ field: 0, value: params[:beta] }, { field: 1, value: @vote_record.send(Content.field_index_to_sym(1)) }, { field: 1, value: @vote_record.send(Content.field_index_to_sym(1)) }]
+          = render partial: 'uploads/list_table', locals: { uploads: @uploads, restricted: true, unsortable: true, view_params: view_params }

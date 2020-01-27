@@ -1,0 +1,11 @@
+- specific_title [t('shared.controls.new'), t('shared.titles.invitation')]
+- add_breadcrumb "#{t('shared.titles.invitation')}: #{t('shared.controls.new')}", request.path
+- add_breadcrumb t('shared.titles.invitations'), :invitations_path
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1= "#{t('shared.controls.new')}: #{t('shared.titles.invitation')}"
+  %p.lead= t('.instructions')
+
+  = render partial: 'form', locals: { invitation: @invitation }

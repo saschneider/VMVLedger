@@ -1,0 +1,31 @@
+- specific_title [ t('shared.titles.report_my_vote') ]
+- add_breadcrumb t('shared.titles.report_my_vote'), request.path
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1= t('shared.titles.report_my_vote')
+
+  - if params[:election] && (params[:beta] || params[:tracker])
+    %p.lead
+      Use this page to report a problem with the vote you checked and the vote you cast.
+  - else
+    %p.lead
+      Unfortunately, we could not find a record of your vote using the data that you supplied. This could be because the data has not yet been published, because
+      you did not vote, or because the data you have provided is incorrect, for example if you did not correctly copy the web link you were provided.
+
+- if params[:election] && (params[:beta] || params[:tracker])
+  .container
+    = form_tag verify_send_report_path(election: params[:election], beta: params[:beta], tracker: params[:tracker]), class: 'form' do
+      .row
+        .col-sm-2
+          = label_tag :reason, 'Reason', class: 'mt-2'
+        .col-sm-8
+          = text_area_tag :reason, nil, placeholder: 'Please enter a reason for your report and include your email address so that we can contact you...', required: true, class: 'form-control'
+        .col-sm-2
+          = submit_tag 'Send', class: 'btn btn-sm btn-primary mt-2', data: { confirm: 'Are you sure that you want to report a possible problem with your vote to ERS?<br/><br/>We will send the contents of this page (including the URL parameters and your reason) to ERS so they can investigate your report. They already hold information about you, this will just serve to flag up the need to look into their systems. They will then get back to you.' }
+
+    %p.my-2
+      By clicking the button, you are telling us to send the contents of this page (including the URL parameters) to ERS so they can investigate your report.
+      They already hold this information, this will just serve to flag up the need to look into their systems. They will then get back to you.
+

@@ -1,0 +1,68 @@
+- specific_title [t('shared.titles.about')]
+- add_breadcrumb t('shared.titles.about'), request.path
+- content_for :menu do
+  = render 'shared/menu'
+
+- cache do
+  .container
+    %h1= t('shared.titles.about')
+    %p.lead
+      %b Verify My Vote (VMV)
+      offers the opportunity to check your vote electronically.
+
+    %p
+      The system has been designed by the
+      = link_to(t('surrey'), t('surrey_web'), target: '_blank')
+      as part of the Voting on Ledger Technologies (VOLT) research project. It is based on the Selene system originating from the
+      != "#{link_to(t('luxembourg'),t('luxembourg_web'), target: '_blank')}."
+      This project is concerned with trusted and transparent voting systems, and with the use
+      of distributed ledger technologies to enhance their trustworthiness. Other partners of the project involved in the trials of the VMV project system are
+      != "#{link_to(t('kings'),t('kings_web'), target: '_blank')} and"
+      != "#{link_to(t('ers'),t('ers_web'), target: '_blank')}, part of the"
+      != "#{link_to(t('civica'),t('civica_web'), target: '_blank')}."
+      = link_to(t('luxembourg'), t('luxembourg_web'), target: '_blank')
+      are also involved.
+
+    %p
+      The code for VMV has been developed for the University of Surrey by
+      != "#{link_to(t('pervasive'),t('pervasive_web'), target: '_blank')}."
+      The system also makes use of the
+      = link_to(t('verificatum'), t('verificatum_web'), target: '_blank')
+      system created by Douglas Wikstrom, and we are grateful to him for his advice on its deployment.  The system also makes use of the
+      = link_to(t('quorum'), t('quorum_web'), target: '_blank')
+      version of the Ethereum blockchain.
+
+    %p
+      VMV is a version of Ryan, Rønne, and Iovino's end-to-end verifiable voting system called
+      != "#{link_to(t('selene'),t('selene_web'), target: '_blank')}."
+      VMV has adapted the Selene design to integrate with the
+      = link_to(t('ers'),t('ers_web'), target: '_blank')
+      online voting system.  The approach to verifiability at the heart of Selene
+      has been fully implemented.
+
+    %h2 The Team
+    .row
+      .col-md-4
+        = image_tag('team/schneider.png', class: 'img-thumbnail mx-auto d-block')
+        .caption
+          %p.text-center Professor Steve Schneider, Project Lead
+      .col-md-4
+        = image_tag('team/dupressoir.png', class: 'img-thumbnail mx-auto d-block')
+        .caption
+          %p.text-center Dr Francois Dupressoir, Co-investigator
+      .col-md-4
+        = image_tag('team/treharne.png', class: 'img-thumbnail mx-auto d-block')
+        .caption
+          %p.text-center Dr Helen Treharne, Co-investigator
+      .col-md-4
+        = image_tag('team/sallal.png', class: 'img-thumbnail mx-auto d-block')
+        .caption
+          %p.text-center Dr Muntadher Sallal, Researcher
+      .col-md-4
+        = image_tag('team/riley.png', class: 'img-thumbnail mx-auto d-block')
+        .caption
+          %p.text-center Dr Luke Riley, Researcher
+      .col-md-4
+        = image_tag('team/casey.png', class: 'img-thumbnail mx-auto d-block')
+        .caption
+          %p.text-center Dr Matthew Casey, Pervasive Intelligence Ltd

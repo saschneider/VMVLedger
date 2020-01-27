@@ -1,0 +1,19 @@
+- specific_title [t('shared.titles.file_types')]
+- add_breadcrumb t('shared.titles.file_types'), :file_types_path
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1
+    = t('shared.titles.file_types')
+    - if policy(FileType).new?
+      .float-right= link_to t('shared.controls.new'), new_file_type_path, class: 'btn btn-primary'
+
+  - if @file_types.count > 0
+    %p.lead= t('.instructions')
+  - else
+    %p.lead= t('.no_file_types')
+
+.container#list
+  = render partial: 'list', locals: { file_types: @file_types }
+

@@ -1,0 +1,38 @@
+.container
+  %h3 Verificatum
+  %p
+    To provide verifiable voting which guarantees that no vote can be traced in any way to a voter, we use the
+    = link_to 'Verificatum', 'https://www.verificatum.com/', target: '_blank'
+    tool.
+
+  %h4 Shuffling
+  %p
+    Verificatum provides a way of securely shuffling encrypted data so that no single person or organisation can know the original order of the data which has
+    been shuffled. It does this by sharing the responsibility for shuffling between independent organisations who each run a 'teller'. Since each organisation
+    is independent, they are less likely to collude, and with a sufficient number of appropriately selected independent organisations, the likelihood of collusion
+    occurring is eliminated.
+
+  %p
+    When data is to be shuffled, each teller in turn receives the list of data to be shuffled. This data has been encrypted using a shared public encryption key
+    (using the ElGamal scheme). The teller then proceeds to randomly shuffle and re-encrypt the data. The process of re-encryption ensures that the data remains
+    intact and encrypted, but that the re-encrypted values do not resemble the values that were provided to the teller.  Since each teller in turn shuffles and
+    encrypts, there is no way to link the final output from the last teller with the input to the first teller, yet all the data remains intact and encrypted.
+
+  %h4 Mixing
+  %p
+    As well as providing a secure way of randomly shuffling encrypted data, Verificatum also provides a way to securely decrypt data which has been shuffled. This
+    process, known as 'mixing', performs a random shuffle in the same was as described above, and then decrypts the final output.
+
+    The decryption process reduces the likelihood of election corruption because the decryption can only take place when a sufficient number of the independent
+    organisations work together to decrypt the data. Each organisation's teller holds a share of the private key required to decrypt the data. This means that no
+    one organisation can decrypt votes as this requires a minimum number of the organisations to perform the decryption.
+
+  %h4 Proof of Knowledge
+  %p
+    The cryptographic operations performed by Verificatum are designed to be independently verifiable by any organisation or person who can obtain the publicly
+    available data from the election. The data that can be downloaded here is data that can be independently verified, and contains various mathematical data,
+    known as proofs of knowledge, of the cryptographic operations performed. For further details, please see
+    = link_to 'Verificatum', 'https://www.verificatum.com/', target: '_blank'
+
+.container
+  = render partial: 'blockchain_or_attachment', locals: { upload: upload }

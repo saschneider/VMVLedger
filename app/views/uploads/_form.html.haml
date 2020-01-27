@@ -1,0 +1,36 @@
+- set_page_model(upload)
+= bootstrap_form_for(upload, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9') do |form|
+  = form_field(form, :select, :election_id, select_options: Election.election_map_select, autofocus: true)
+  = form_field(form, :select, :file_type_id, select_options: FileType.file_type_map_select)
+  - if upload.new_record?
+    = form.file_field :file, direct_upload: true
+    :javascript
+      var file_type_select = $('#upload_file_type_id');
+
+      function update(target) {
+        var content_type = $('option:selected', target).attr('content_type');
+        var upload = $('#upload_file');
+        upload.attr('accept', content_type);
+
+        var hint = $('option:selected', target).attr('hint');
+        if (hint) {
+          var label = upload.next('label').html();
+          upload.next('label').html(label.replace(/:.*/, '') + ': ' + hint);
+        }
+        else {
+          var label = upload.next('label').html();
+          upload.next('label').html(label.replace(/:.*/, ''));
+        }
+      }
+
+      update(file_type_select);
+
+      file_type_select.change(function() {
+        update(this);
+      })
+
+  = form.form_group do
+    = form_field(form, :check_box, :public)
+
+  = render partial: 'shared/form_mandatory', locals: { form: form }
+  = render partial: 'shared/form_buttons', locals: { form: form }

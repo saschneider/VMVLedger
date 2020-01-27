@@ -1,0 +1,12 @@
+#
+# Custom content field names locale file.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+en:
+  fields:
+    alpha: Tracker Commitment (Part 1)
+    beta: Tracker Commitment (Part 2)

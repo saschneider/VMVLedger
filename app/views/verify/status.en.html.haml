@@ -1,0 +1,31 @@
+- specific_title [ t('shared.titles.status'), @election.name]
+- add_breadcrumb t('shared.titles.status'), request.path
+- add_breadcrumb @election.name, election_path(@election)
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1= @election.name
+
+.container
+  - if @voter_record
+    %p.lead
+      The following is a valid Tracker Commitment (Part 2) for this election:
+
+    .border.rounded.bg-light.my-2
+      %p.p-2.break-all= @voter_record.send(Content.field_index_to_sym(0))
+
+    %h2 Voting
+    %p
+      - if @vote_cast.nil?
+        Voting results will be posted after the close of the election.
+      - else
+        - if @vote_cast
+          A vote has been cast using this Tracker Commitment.
+        - else
+          No vote has been cast using this Tracker Commitment.
+
+  - else
+    %p.lead
+      Unfortunately, we could not find a record of this Tracker Commitment (Part 2) using the data that you supplied. This could be because the data you have
+      provided is incorrect, for example if you did not correctly copy the web link you were provided.

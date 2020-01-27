@@ -1,0 +1,15 @@
+- specific_title [t('shared.titles.users')]
+- add_breadcrumb t('shared.titles.users'), :users_path
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1= t('shared.titles.users')
+
+  - if @users.count > 0
+    %p.lead= t('.instructions')
+  - else
+    %p.lead= t('.no_users')
+
+.container#list
+  = render partial: 'list', locals: { users: @users }

@@ -1,0 +1,84 @@
+/*
+ * Form SCSS file.
+ *
+ * @author Matthew Casey
+ *
+ * (c) University of Surrey 2019
+ */
+
+/*
+ * Used by bootstrap-select in form.coffee.
+ */
+.btn-form-control {
+  color: $input-color;
+  background-color: $input-bg;
+  border: 1px solid $input-border-color;
+  border-radius: $input-border-radius;
+}
+
+a.form-control-plaintext {
+  color: $link-color;
+}
+
+/*
+ * Form customisations.
+ */
+.card-header, .card-title {
+  span {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  span.description {
+    white-space: normal;
+    height: 4.5em;
+  }
+}
+
+.custom-file-label::after {
+  background: theme-color("primary");
+  color: color-yiq(theme-color("primary"));
+}
+
+/*
+ * Direct upload.
+ */
+.direct-upload-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: 0.2;
+  background: #0076ff;
+  transition: width 120ms ease-out, opacity 60ms 60ms ease-in;
+  transform: translate3d(0, 0, 0);
+}
+
+/*
+ * Label customisations.
+ */
+label:after {
+  content: ":";
+}
+
+label.form-check-label:after {
+  content: "";
+}
+
+label.required:after {
+  content: ":\00a0*";
+}
+
+label.form-check-label.required:after {
+  content: "\00a0*";
+}
+
+.no-required label.required:after {
+  content: ":";
+}
+
+.no-required label.form-check-label.required:after {
+  content: "";
+}

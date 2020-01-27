@@ -1,0 +1,37 @@
+#
+# File types fixtures.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+election_parameters:
+  name: Public Election Parameters
+  action: 1
+  content_type: text/csv
+  convert_to_content: true
+  needed_for_verify: false
+  needed_for_status: false
+  sequence: 1
+  public: true
+
+election_keys:
+  name: Public Election Keys
+  action: 1
+  content_type: text/csv
+  convert_to_content: true
+  needed_for_verify: false
+  needed_for_status: false
+  sequence: 2
+  public: true
+
+not_public:
+  name: Election Keys
+  action: 0
+  content_type: text/csv
+  convert_to_content: true
+  needed_for_verify: false
+  needed_for_status: false
+  sequence: 2
+  public: false

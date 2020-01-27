@@ -1,0 +1,6 @@
+- unless request.path == home_path
+  - add_breadcrumb t('shared.titles.home'), :home_path
+  .container
+    %nav{ aria: { label: t('shared.titles.breadcrumb')} }
+      %ol.breadcrumb
+        = render_breadcrumbs tag: :li, separator: '', builder: BootstrapBreadcrumbsBuilder, current_path: request.path

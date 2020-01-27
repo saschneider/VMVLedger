@@ -1,0 +1,16 @@
+#
+# User fixtures.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+user1:
+  email: user1@test.com
+  encrypted_password: encrypted
+  forename: User
+  surname: One
+  terms_of_service: true
+  confirmed_at: <%= Time.current %>
+  invitation: invitation1

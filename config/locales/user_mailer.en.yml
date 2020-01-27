@@ -1,0 +1,12 @@
+#
+# User mailer English locale file.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+en:
+  user_mailer:
+    invitation_subject: "%{app_title} Sign Up Invitation"
+    report_subject: "%{app_title} Voter Verification Report"

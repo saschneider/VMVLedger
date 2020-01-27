@@ -1,0 +1,53 @@
+#
+# English locale file.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+en:
+  app_title: "Verify My Vote"
+  app_keywords: "Verifiable Voting"
+  app_description: "Verify My Vote provides a demonstration of electronic verifiable voting."
+  app_team: "VMV Support Team"
+
+  company: "University of Surrey"
+  company_web: "https://vmv.surrey.ac.uk/"
+  company_email: "vmv@surrey.ac.uk"
+  no_reply_email: "no-reply@pervasive-intelligence.co.uk"
+
+  surrey: "University of Surrey"
+  surrey_web: "https://www.surrey.ac.uk/"
+
+  kings: "King's College London"
+  kings_web: "https://www.kcl.ac.uk/"
+
+  ers: "Electoral Reform Services"
+  ers_web: "https://www.electoralreform.co.uk/"
+
+  civica: "Civica Group"
+  civica_web: "https://www.civica.com"
+
+  pervasive: "Pervasive Intelligence Ltd"
+  pervasive_web: "https://www.pervasive-intelligence.co.uk/"
+
+  luxembourg: "University of Luxembourg"
+  luxembourg_web: "https://wwwen.uni.lu/"
+
+  quorum: "Quorum"
+  quorum_web: "https://www.jpmorgan.com/global/Quorum"
+
+  selene: "Selene"
+  selene_web: "https://eprint.iacr.org/2015/1105.pdf"
+
+  verificatum: "Verificatum"
+  verificatum_web: "https://www.verificatum.com/"
+
+  error_title: "Error"
+  authenticity_token_error: "Your session has expired. Please log in again."
+  authorisation_error: "Verification data is currently not available. This could be because the data has not yet been published, or because the data you have entered for verification is incorrect. Please check and/or try again later."
+  record_not_found: "Record not found. Please check what you are trying to access and try again."
+  unknown_route: "Page does not exist."
+
+  weak_password: "must include at least one lowercase letter, one uppercase letter, one digit and be at least eight characters long."

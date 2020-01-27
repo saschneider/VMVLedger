@@ -1,0 +1,17 @@
+#
+# Invitations fixtures.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+invitation1:
+  email: user1@test.com
+  redeemed: true
+  creator: admin@test.com
+
+invitation2:
+  email: user2@test.com
+  redeemed: false
+  creator: admin@test.com

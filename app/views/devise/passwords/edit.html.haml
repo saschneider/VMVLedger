@@ -1,0 +1,18 @@
+- specific_title [t('shared.titles.change_password')]
+- add_breadcrumb t('shared.titles.change_password'), request.path
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1= t('shared.titles.change_password')
+  %p.lead= t('.instructions')
+
+  = bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9') do |form|
+    = form.hidden_field :reset_password_token
+
+    = form_field(form, :password_field, :password, control_col: 'col-sm-5', autofocus: true)
+    = form_field(form, :password_field, :password_confirmation, control_col: 'col-sm-5')
+
+    = render partial: 'shared/form_mandatory', locals: { form: form }
+    = form.form_group do
+      = form.submit t('shared.controls.save')

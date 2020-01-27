@@ -1,0 +1,38 @@
+-#  The container tag
+-#  available local variables
+-#    current_page:  a page object for the currently displayed page
+-#    total_pages:   total number of pages
+-#    per_page:      number of items to fetch per page
+-#    remote:        data-remote
+-#    paginator:     the paginator that renders the pagination tags inside
+= paginator.render do
+  %nav{ aria: { label: t('shared.controls.page_navigation') } }
+    %ul.pagination.pagination-sm.justify-content-end
+      %li.d-none#spinner= fa_icon('spinner spin')
+      - if defined?(count) && !count.blank?
+        %li.small.px-1.py-1= t('shared.controls.items_count', count: number_with_delimiter(count, precision: 0, delimiter: ','))
+      %li.small.px-1.py-1= t('shared.controls.page')
+      = first_page_tag
+      = prev_page_tag
+      - each_page do |page|
+        - if page.display_tag?
+          = page_tag page
+        - elsif !page.was_truncated?
+          = gap_tag
+      = next_page_tag
+      = last_page_tag
+      %li.small.px-1.py-1= t('shared.controls.items')
+      = form_tag request.path, method: :get, id: 'limit_form', remote: true do
+        = hidden_field_tag :field, params[:field]
+        = hidden_field_tag :value, params[:value]
+        = hidden_field_tag :filter, params[:filter]
+        = select_tag :limit, options_for_select(([Kaminari.config.default_per_page, Kaminari.config.default_per_page * 2, Kaminari.config.default_per_page * 4, params[:limit]]).map(&:to_i).sort.uniq, selected: params[:limit])
+      - if request.format.js?
+        :javascript
+          $('#limit').selectpicker('render');
+      :javascript
+        $('#limit').change(
+          function() {
+            $('#limit_form').submit();
+          }
+        );

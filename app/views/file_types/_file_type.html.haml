@@ -1,0 +1,20 @@
+= bootstrap_form_for(file_type, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9') do |form|
+  = form_field(form, :text_field, :name, autofocus: true, disabled: true)
+  = form_field(form, :text_area, :description, control_col: 'col-sm-9', rows: 5)
+  = form_field(form, :text_area, :long_description, control_col: 'col-sm-9', rows: 5)
+  = form_field(form, :text_area, :content_description, control_col: 'col-sm-9', rows: 5, disabled: true)
+  = form_field(form, :text_field, :content_type, disabled: true)
+  = form_field(form, :text_field, :hint, disabled: true, value: file_type&.hint&.html_safe)
+  = form.form_group do
+    = form_field(form, :check_box, :convert_to_content, disabled: true)
+  = form.form_group do
+    = form_field(form, :check_box, :needed_for_verify, disabled: true)
+  = form.form_group do
+    = form_field(form, :check_box, :needed_for_status, disabled: true)
+  = form_field(form, :number_field, :sequence, control_col: 'col-sm-3', disabled: true)
+  = form_field(form, :text_field, :action, value: t("activerecord.attributes.file_type.#{file_type.action}.name"), control_col: 'col-sm-5', disabled: true)
+  = form_field(form, :text_field, :stage, value: t("activerecord.attributes.file_type.#{file_type.stage}.name"), control_col: 'col-sm-5', disabled: true)
+  = form.form_group do
+    = form_field(form, :check_box, :public, disabled: true)
+
+  = render partial: 'shared/show_buttons', locals: { form: form, model: file_type, name: file_type.name }

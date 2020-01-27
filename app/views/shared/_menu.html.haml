@@ -1,0 +1,19 @@
+%ul.navbar-nav.mr-auto
+  = link_to_list_active introduction_path do
+    = t('shared.titles.introduction')
+  = link_to_list_active verifiable_path do
+    = t('shared.titles.verifiable')
+  = link_to_list_active about_path do
+    = t('shared.titles.about')
+  = link_to_list_active documents_path do
+    = t('shared.titles.documents')
+  - if policy(Election).index?
+    = link_to_list_active elections_path do
+      = t('shared.titles.elections')
+
+%ul.navbar-nav
+  - if user_signed_in?
+    = render 'shared/menu_admin'
+
+  - if (defined?(@show_account) && @show_account) || user_signed_in?
+    = render 'shared/menu_account'

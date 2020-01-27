@@ -1,0 +1,54 @@
+- if uploads.count > 0
+  = paginate uploads, count: uploads.total_count, remote: true if uploads.respond_to?(:total_pages)
+  - sortable = false
+  - sortable = true unless defined?(unsortable)
+  - if sortable
+    %p.d-flex.flex-wrap.align-items-center.justify-content-end.h-100
+      %span.small= t('shared.controls.sort')
+      - restricted = false unless defined?(restricted)
+      - unless restricted
+        %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:election_id, t('activerecord.attributes.upload.election_id'), filter: params[:filter])
+      %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable('file_types.sequence'.to_sym, t('activerecord.attributes.upload.file_type_id'), filter: params[:filter])
+      - unless restricted
+        %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:status, t('activerecord.attributes.upload.status'), filter: params[:filter])
+        %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:'uploads.public', t('activerecord.attributes.upload.public'), filter: params[:filter])
+        %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:retrieved_at, t('activerecord.attributes.upload.retrieved_at'), filter: params[:filter])
+  .row
+    - view_params = [] unless defined?(view_params)
+    - uploads.each_with_index do |upload, index|
+      - extracted_params = view_params[index] if view_params && (view_params.size > index)
+      - cache [upload, upload.file_type, upload.election, restricted, extracted_params, user_signed_in?] do
+        .col-lg-4.col-md-6.col-12.my-3
+          .card.text-white{ class: !upload.file_type.public? ? 'bg-muted-danger' : upload.public? ? 'bg-primary' : 'bg-muted-primary' }
+            .card-header.d-flex.justify-content-between
+              %span
+                = fa_icon(t("activerecord.attributes.file_type.#{upload.file_type.action}.icon"))
+                = restricted ? upload.file_type.name : "#{upload.file_type.sequence}. #{upload.file_type.name}"
+              = render partial: 'shared/list_buttons', locals: { model: upload, name: upload.file_type.name, options: { css_class: 'text-white no-decoration' } }
+            .card-body.px-0
+              - if restricted
+                %p.card-title.d-flex.flex-row.card-description
+                  %span.col.text-wrap= upload.file_type.description
+              - else
+                %p.card-title.d-flex.flex-row.rounded.mx-1
+                  %span.col-5.text-left= t('activerecord.attributes.upload.election_id')
+                  %span.col-7.text-right= upload.election.name
+                %p.card-title.d-flex.flex-row.rounded.mx-1
+                  %span.col-5.text-left= t('activerecord.attributes.file_type.action')
+                  %span.col-7.text-right= t("activerecord.attributes.file_type.#{upload.file_type.action}.name")
+                %p.card-title.d-flex.flex-row.rounded.mx-1
+                  %span.col-3.text-left= t('activerecord.attributes.upload.filename')
+                  %span.col-9.text-right
+                    - if upload.file.attached?
+                      = upload.file.filename.to_s
+                %p.card-title.d-flex.flex-row.rounded.mx-1{ class: !upload.public? ? '' : upload.pending? || upload.creating? ? 'bg-secondary' : upload.failed? ? 'bg-danger' : 'bg-success' }
+                  %span.col-5.text-left= t('activerecord.attributes.upload.status')
+                  %span.col-7.text-right= upload.file_type.public? ? t("activerecord.attributes.job.#{upload.status}") : t('shared.controls.na')
+                %p.card-title.d-flex.flex-row.rounded.mx-1{ class: upload.file_type.public? && upload.file_type.convert_to_content? ? (!upload.contents.exists? ? 'bg-danger' : 'bg-success') : '' }
+                  %span.col-5.text-left= t('activerecord.attributes.upload.retrieved')
+                  %span.col-7.text-right= upload.file_type.public? && upload.file_type.convert_to_content? ? (upload.contents.exists? && upload.retrieved_at ? l(upload.retrieved_at, format: :short) : t('shared.controls.no')) : t('shared.controls.na')
+              %p.card-title.d-flex.flex-row.mb-0
+                - if user_signed_in?
+                  %span.col.text-center= link_to t('shared.controls.details'), upload_path(upload), class: !upload.file_type.public? ? 'btn btn-danger p-0 w-100' : 'btn btn-secondary p-0 w-100'
+                - if lookup_context.template_exists?(upload.file_type.action, 'contents', true)
+                  %span.col.text-center= link_to t('shared.controls.view'), upload_contents_path(upload, extracted_params), class: !upload.file_type.public? ? 'btn btn-danger p-0 w-100' : 'btn btn-secondary p-0 w-100'

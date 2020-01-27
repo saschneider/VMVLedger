@@ -1,0 +1,15 @@
+- specific_title [ t('error_title') ]
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  .jumbotron
+    %h1 Sorry
+    %p Something went wrong. Please try again.
+
+  .col-sm-12
+    %h2= @message
+    %h3= "Exception: #{@exception.message}"
+    %ul.list-unstyled
+      - @exception.backtrace_locations[0..10].each do |location|
+        %li.small= location

@@ -1,0 +1,46 @@
+%li.nav-item.dropdown
+  = link_to '#', class: 'nav-link dropdown-toggle', id: 'navbar_account', role: 'button', data: { toggle: 'dropdown' }, aria: { haspopup: true, expanded: false } do
+    %span.hide-when-collapsed
+      = fa_icon 'user lg', title: t('.account')
+    %span.hide-when-not-collapsed
+      = fa_icon 'user lg fw', title: t('.account')
+      - if user_signed_in?
+        = t('.account')
+      - else
+        = t('shared.titles.login')
+
+  .dropdown-menu.dropdown-menu-right{ aria: { labelledby: "navbar_account" } }
+    - if user_signed_in?
+      %p.pl-3.text-nowrap.text-muted= current_user.fullname
+
+      = link_to_active edit_user_registration_path do
+        = fa_icon 'edit fw'
+        = t('.edit')
+
+      = link_to_active destroy_user_session_path, method: 'delete' do
+        = fa_icon 'sign-out-alt fw'
+        = t('.logout')
+
+    - else
+      = link_to_active new_user_session_path do
+        = fa_icon 'sign-in-alt fw'
+        = t('shared.titles.login')
+
+      .dropdown-divider
+
+      = link_to_active new_user_registration_path do
+        = fa_icon 'sign-in-alt fw'
+        = t('.sign_up')
+
+      = link_to_active new_user_password_path do
+        = fa_icon 'unlock-alt fw'
+        = t('.forgotten_password')
+
+      = link_to_active new_user_confirmation_path do
+        = fa_icon 'paper-plane fw'
+        = t('.resend_confirmation')
+
+      = link_to_active new_user_unlock_path do
+        = fa_icon 'paper-plane fw'
+        = t('.resend_unlock')
+

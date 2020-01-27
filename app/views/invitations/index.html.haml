@@ -1,0 +1,19 @@
+- specific_title [t('shared.titles.invitations')]
+- add_breadcrumb t('shared.titles.invitations'), :invitations_path
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1
+    = t('shared.titles.invitations')
+    - if policy(Invitation).new?
+      .float-right= link_to t('shared.controls.new'), new_invitation_path, class: 'btn btn-primary'
+
+  - if @invitations.count > 0
+    %p.lead= t('.instructions')
+  - else
+    %p.lead= t('.no_invitations')
+
+.container#list
+  = render partial: 'list', locals: { invitations: @invitations }
+

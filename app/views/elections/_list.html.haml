@@ -1,0 +1,29 @@
+- if elections.count > 0
+  = paginate elections, count: elections.total_count, remote: true
+  %p.d-flex.flex-wrap.align-items-center.justify-content-end.h-100
+    %span.small= t('shared.controls.sort')
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:name, t('activerecord.attributes.election.name'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:updated_at, t('activerecord.attributes.election.updated_at'))
+  .row
+    - elections.each do |election|
+      .col-lg-4.col-md-6.col-12.my-3
+        .card.text-white{ class: election.public? ? 'bg-primary' : 'bg-muted-primary' }
+          .card-header.d-flex.justify-content-between
+            %span= election.name
+            = render partial: 'shared/list_buttons', locals: { model: election, name: election.name, options: { css_class: 'text-white no-decoration' } }
+          .card-body.px-0
+            %p.card-title.d-flex.flex-row.rounded.mx-1
+              %span.description.col= election.description
+            %p.card-title.d-flex.flex-row.rounded.mx-1
+              %span.col-9.text-left= t('.data_available')
+              %span.col-3.text-right= election.uploads.is_public.is_success.count > 0 ? t('shared.controls.yes') : t('shared.controls.no')
+            %p.card-title.d-flex.flex-row.rounded.mx-1
+              %span.col-9.text-left= t('.verification_available')
+              %span.col-3.text-right= election.verification? ? t('shared.controls.yes') : t('shared.controls.no')
+            %p.card-title.d-flex.flex-row.rounded.mx-1
+              %span.col-6.text-left= t('activerecord.attributes.election.updated_at')
+              %span.col-6.text-right= l(election.updated_at, format: :short) unless election.updated_at.nil?
+            %p.card-title.d-flex.flex-row.mb-0
+              %span.col.text-center= link_to t('.view'), election_path(election), class: 'btn btn-secondary p-0 w-100'
+              - if user_signed_in?
+                %span.col-4.text-center= link_to t('shared.controls.details'), uploads_path(filter: election.id), class: 'btn btn-secondary p-0 w-100'

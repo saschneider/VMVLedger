@@ -1,0 +1,31 @@
+- if invitations.count > 0
+  = paginate invitations, count: invitations.total_count, remote: true
+  %p.d-flex.flex-wrap.align-items-center.justify-content-end.h-100
+    %span.small= t('shared.controls.sort')
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:email, t('activerecord.attributes.invitation.email'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:redeemed, t('activerecord.attributes.invitation.redeemed'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:creator, t('activerecord.attributes.invitation.creator'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:created_at, t('activerecord.attributes.invitation.created_at'))
+  .row
+    - invitations.each do |invitation|
+      .col-lg-4.col-md-6.col-12.my-3
+        .card.text-white.bg-primary
+          .card-header.d-flex.justify-content-between
+            %span= invitation.email
+            - unless invitation.redeemed?
+              = render partial: 'shared/list_buttons', locals: { model: invitation, name: invitation.email, options: { css_class: 'text-white no-decoration' } }
+          .card-body.px-0
+            %p.card-title.d-flex.flex-row.rounded.mx-1
+              %span.col-6.text-left= t('activerecord.attributes.invitation.redeemed')
+              %span.col-6.text-right= invitation.redeemed? ? t('shared.controls.yes') : t('shared.controls.no')
+            %p.card-title.d-flex.flex-row.rounded.mx-1
+              %span.col-4.text-left= t('activerecord.attributes.invitation.creator')
+              %span.col-8.text-right= invitation.creator
+            %p.card-title.d-flex.flex-row.rounded.mx-1
+              %span.col-4.text-left= t('activerecord.attributes.invitation.created_at')
+              %span.col-8.text-right= l(invitation.created_at, format: :short) unless invitation.created_at.nil?
+            %p.card-title.d-flex.flex-row.mb-0
+              - if invitation.redeemed?
+                %span.col.text-center &nbsp;
+              - else
+                %span.col.text-center= link_to t('shared.controls.edit'), edit_invitation_path(invitation), class: 'btn btn-secondary btn-sm p-0 w-100'

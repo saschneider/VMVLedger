@@ -1,0 +1,43 @@
+#
+# Docker compose file.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/app.Dockerfile
+    image: vmv_app:latest
+    depends_on:
+      - db
+      - quorum
+    environment:
+      - DELAYED_JOBS=true
+
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_USER=vmvdb
+      - POSTGRES_DB=dockerdb
+
+  quorum:
+    build:
+      context: .
+      dockerfile: ./docker/quorum.Dockerfile
+    image: vmv_quorum:latest
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/web.DockerFile
+    image: vmv_web:latest
+    depends_on:
+      - app
+    ports:
+      - 3000:80

@@ -1,0 +1,22 @@
+- set_page_model(file_type)
+= bootstrap_form_for(file_type, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9') do |form|
+  = form_field(form, :text_field, :name, autofocus: true)
+  = form_field(form, :text_area, :description, control_col: 'col-sm-9', rows: 5)
+  = form_field(form, :text_area, :long_description, control_col: 'col-sm-9', rows: 5)
+  = form_field(form, :text_area, :content_description, control_col: 'col-sm-9', rows: 5)
+  = form_field(form, :text_field, :content_type)
+  = form_field(form, :text_field, :hint)
+  = form.form_group do
+    = form_field(form, :check_box, :convert_to_content)
+  = form.form_group do
+    = form_field(form, :check_box, :needed_for_verify)
+  = form.form_group do
+    = form_field(form, :check_box, :needed_for_status)
+  = form_field(form, :number_field, :sequence, control_col: 'col-sm-3')
+  = form_field(form, :select, :action, select_options: FileType.action_map_select, control_col: 'col-sm-5')
+  = form_field(form, :select, :stage, select_options: FileType.stage_map_select, control_col: 'col-sm-5')
+  = form.form_group do
+    = form_field(form, :check_box, :public)
+
+  = render partial: 'shared/form_mandatory', locals: { form: form }
+  = render partial: 'shared/form_buttons', locals: { form: form }

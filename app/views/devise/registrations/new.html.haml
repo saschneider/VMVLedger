@@ -1,0 +1,22 @@
+- specific_title [t('shared.titles.sign_up')]
+- add_breadcrumb t('shared.titles.sign_up'), request.path
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1= t('shared.titles.sign_up')
+  %p.lead= t('.instructions_html')
+
+  = bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9') do |form|
+    = form_field(form, :email_field, :email, control_col: 'col-sm-5', autofocus: true)
+    = form_field(form, :password_field, :password, control_col: 'col-sm-5')
+    = form_field(form, :password_field, :password_confirmation, control_col: 'col-sm-5', required: true)
+    = form_field(form, :text_field, :forename, control_col: 'col-sm-5')
+    = form_field(form, :text_field, :surname, control_col: 'col-sm-5')
+    = form_field(form, :select, :time_zone, control_col: 'col-sm-5', select_options: time_zone_options_for_select(form.object.time_zone))
+    = form.form_group help: t('activerecord.help.user.terms_of_service_html', url: link_to(t('activerecord.help.user.terms_of_service_url'), privacy_path)) do
+      = form_field(form, :check_box, :terms_of_service)
+
+    = render partial: 'shared/form_mandatory', locals: { form: form }
+    = form.form_group do
+      = form.submit t('shared.titles.sign_up')

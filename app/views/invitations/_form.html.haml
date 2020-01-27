@@ -1,0 +1,6 @@
+- set_page_model(invitation)
+= bootstrap_form_for(invitation, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9') do |form|
+  = form_field(form, :email_field, :email, autofocus: true)
+
+  = render partial: 'shared/form_mandatory', locals: { form: form }
+  = render partial: 'shared/form_buttons', locals: { form: form }

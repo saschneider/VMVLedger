@@ -1,0 +1,5 @@
+.container
+  = render partial: 'blockchain_or_attachment', locals: { upload: upload }
+
+.container#list
+  = render partial: 'list', locals: { upload: upload, contents: contents, field_names: field_names }

@@ -1,0 +1,93 @@
+#
+# Devise English locale file.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+# Additional translations at https://github.com/plataformatec/devise/wiki/I18n
+
+en:
+  devise:
+    confirmations:
+      confirmed: "Your email address has been successfully confirmed."
+      send_instructions: "You will receive an email with instructions for how to confirm your email address in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive an email with instructions for how to confirm your email address in a few minutes."
+      new:
+        instructions: "Have you not received your account confirmation email?  Enter you registered email address below and we will send you another account confirmation."
+    failure:
+      already_authenticated: "You are already signed in."
+      inactive: "Your account is not activated yet."
+      invalid: "Invalid %{authentication_keys} or Password."
+      locked: "Your account is locked."
+      last_attempt: "You have one more attempt before your account is locked."
+      not_found_in_database: "Invalid %{authentication_keys} or Password."
+      timeout: "Your session expired. Please sign in again to continue."
+      unauthenticated: "You need to sign in or sign up before continuing."
+      unconfirmed: "You have to confirm your email address before continuing."
+    mailer:
+      confirmation_instructions:
+        subject: "%{app_title} Confirmation Instructions"
+      reset_password_instructions:
+        subject: "%{app_title} Reset password Instructions"
+      unlock_instructions:
+        subject: "%{app_title} Unlock Instructions"
+      email_changed:
+        subject: "%{app_title} Email Changed"
+      password_change:
+        subject: "%{app_title} Password Changed"
+    omniauth_callbacks:
+      failure: "Could not authenticate you from %{kind} because \"%{reason}\"."
+      success: "Successfully authenticated from %{kind} account."
+    passwords:
+      no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
+      send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
+      updated: "Your password has been changed successfully. You are now signed in."
+      updated_not_active: "Your password has been changed successfully."
+      new:
+        instructions: "Forgotten your password? Enter you registered email address below and we will send you an email which will allow you to reset your password."
+      edit:
+        instructions: "Reset your password by entering a new password below:"
+    registrations:
+      destroyed: "Bye! Your account has been successfully cancelled. We hope to see you again soon."
+      signed_up: "Welcome! You have signed up successfully."
+      signed_up_but_inactive: "You have signed up successfully. However, we could not sign you in because your account is not yet activated."
+      signed_up_but_locked: "You have signed up successfully. However, we could not sign you in because your account is locked."
+      signed_up_but_unconfirmed: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+      update_needs_confirmation: "You updated your account successfully, but we need to verify your new email address. Please check your email and follow the confirm link to confirm your new email address."
+      updated: "Your account has been updated successfully."
+      edit:
+        cancel: "Cancel Account"
+        cancel_anytime: "You can cancel your account at any time by pressing the button below. Note that cancelling your account will remove all of your user information."
+        cancel_account: "Cancel My Account"
+        cancel_confirm: "Are you sure you want to cancel your account and delete all of your personal data?"
+        waiting_confirmation: "Currently waiting confirmation for: %{email}"
+        change_password: "If you want to change your password, enter the new password and confirm it here (leave blank otherwise):"
+        current_password: "Enter your current password here to confirm the changes:"
+        instructions: "Change your user details here. Note that if you change your email address, this will need to be confirmed."
+      new:
+        instructions_html: "Please enter your details below. <b>Note that the email address must match the email used for your invitation.</b> When you have completed this stage, we will send you an email to confirm your account before continuing."
+    sessions:
+      signed_in: ""
+      signed_out: "Signed out successfully."
+      already_signed_out: "Signed out successfully."
+      new:
+        instructions: "Enter your login details:"
+    unlocks:
+      send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
+      send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."
+      unlocked: "Your account has been unlocked successfully. Please sign in to continue."
+      new:
+        instructions: "Have you locked your account and you cannot login? Enter you registered email address below and we will send you an email which will allow you to unlock your account."
+  errors:
+    messages:
+      already_confirmed: "was already confirmed, please try signing in"
+      confirmation_period_expired: "needs to be confirmed within %{period}, please request a new one"
+      expired: "has expired, please request a new one"
+      not_found: "not found"
+      not_locked: "was not locked"
+      not_saved:
+        one: "Please correct the following error before trying again:"
+        other: "Please correct the following errors before trying again:"

@@ -1,0 +1,23 @@
+- if users.count > 0
+  = paginate users, count: users.total_count, remote: true
+  %p.d-flex.flex-wrap.align-items-center.justify-content-end.h-100
+    %span.small= t('shared.controls.sort')
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:email, t('activerecord.attributes.user.email'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:forename, t('activerecord.attributes.user.forename'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:surname, t('activerecord.attributes.user.surname'))
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:current_sign_in_at, t('activerecord.attributes.user.current_sign_in_at'))
+  .row
+    - users.each do |user|
+      .col-lg-4.col-md-6.col-12.my-3
+        .card.text-white.bg-primary
+          .card-header.d-flex.justify-content-between
+            %span= user.fullname
+            = render partial: 'shared/list_buttons', locals: { model: user, name: user.fullname, options: { css_class: 'text-white no-decoration' } }
+          .card-body.px-0
+            %p.card-title.d-flex.flex-row.rounded.mx-1
+              %span.col.text-left= user.email
+            %p.card-title.d-flex.flex-row.rounded.mx-1
+              %span.col-5.text-left= t('activerecord.attributes.user.current_sign_in_at')
+              %span.col-7.text-right= l(user.current_sign_in_at) unless user.current_sign_in_at.nil?
+            %p.card-title.d-flex.flex-row.mb-0
+              %span.col.text-center= link_to t('shared.controls.edit'), edit_user_path(user), class: 'btn btn-secondary p-0 w-100'

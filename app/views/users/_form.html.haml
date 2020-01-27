@@ -1,0 +1,8 @@
+- set_page_model(user)
+= bootstrap_form_for(user, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9') do |form|
+  = form_field(form, :text_field, :forename, autofocus: true)
+  = form_field(form, :text_field, :surname)
+  = form_field(form, :select, :time_zone, select_options: time_zone_options_for_select(form.object.time_zone))
+
+  = render partial: 'shared/form_mandatory', locals: { form: form }
+  = render partial: 'shared/form_buttons', locals: { form: form }

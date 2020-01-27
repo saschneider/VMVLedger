@@ -1,0 +1,58 @@
+- specific_title [ t('shared.titles.verify'), @election.name]
+- add_breadcrumb t('shared.titles.verify'), request.path
+- add_breadcrumb @election.name, election_path(@election)
+- content_for :menu do
+  = render 'shared/menu'
+
+.container
+  %h1= @election.name
+
+.container
+  - if @vote_record && @voters_field_names
+    %p.lead
+      This shows the vote as submitted to
+      = link_to(t('ers'), t('ers_web'), target: '_blank')
+      (ERS) which matches the verification data you supplied:
+
+    %dl.row
+      %dt.col-sm-3.text-right Your Vote:
+      %dd.col-sm-9.text-left= @vote_record.send(Content.field_index_to_sym(0))
+
+    %dl.row
+      %dt.col-sm-3.text-right Tracker Number:
+      %dd.col-sm-9.text-left= @vote_record.send(Content.field_index_to_sym(1))
+  - else
+    %p.lead
+      Unfortunately, we could not find a record of your vote using the data that you supplied. This could be because the data has not yet been published, because
+      you did not vote, or because the data you have provided is incorrect, for example if you did not correctly copy the web link you were provided.
+
+.container
+  - unless @election.survey_url.blank?
+    .row
+      .col-sm-10
+        %p.lead
+          We are running a short questionnaire as part of the research trial of this system. Further information about the research trial is available
+          != "#{link_to('here', asset_path('survey.pdf'), target: '_blank')}."
+          We are very interested in receiving your feedback.
+      .col-sm-2
+        %p.lead.text-center= link_to('Provide Feedback', @election.survey_url, target: '_blank', class: 'btn btn-lg btn-primary')
+
+.container
+  - view_params = nil
+  - if (params[:beta] || params[:tracker]) && @vote_record
+    - view_params = { field: 1, value: @vote_record.send(Content.field_index_to_sym(1)) }
+
+  %h4= link_to('See all votes', upload_contents_path(@uploads.last, view_params))
+  %p The record of all votes received, together with their tracking numbers, including yours.  Use this to check the result.
+
+  %h4= link_to('How does it work?', introduction_path)
+  %p An explanation of the design behind the system.
+
+  - if @vote_record
+    %h4= link_to('Report if this is not your vote', verify_report_my_vote_path(election: params[:election], beta: params[:beta], tracker: params[:tracker]))
+    %p If the vote shown here does not correspond to the vote you cast.
+
+  %h4= link_to('Frequently asked questions', verify_faq_path(election: params[:election], alpha: params[:alpha], beta: params[:beta], tracker: params[:tracker]))
+  %p Answers to specific questions about the system.
+
+

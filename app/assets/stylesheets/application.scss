@@ -1,0 +1,24 @@
+/*
+ * Application SCSS file.
+ *
+ * @author Matthew Casey
+ *
+ * (c) University of Surrey 2019
+ *
+ * Do not include "require_self" or "require_tree" because we want to use bootstrap mixins. Use "@import" instead, such as for bootstrap:
+ */
+/*
+ * Custom bootstrap variables must be set or imported *before* bootstrap.
+ */
+@import "colours";
+@import "fonts";
+@import "bootstrap";
+@import "rails_bootstrap_forms";
+@import "bootstrap-select/dist/css/bootstrap-select.min";
+/*
+ * The rest of the stylesheets.
+ */
+@import "shared/form";
+@import "shared/page";
+@import "home/home";
+@import "elections/elections";

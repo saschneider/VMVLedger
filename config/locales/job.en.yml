@@ -1,0 +1,23 @@
+#
+# Job English locale file.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+en:
+  blockchain_commit_job:
+    not_public: "Upload cannot be committed to the blockchain because it is not public or not allowed to be public: %{upload}"
+    duplicate_upload: "Upload cannot be committed to the blockchain because it has already been committed: %{upload}"
+    failed_upload: "Failed to commit upload to the blockchain: %{upload}"
+    failed_perform: "Failed to commit upload to the blockchain: %{upload} %{message}"
+
+  blockchain_retrieve_job:
+    not_public: "Upload cannot be retrieved from the blockchain because it is not public or not allowed to be public: %{upload}"
+    not_uploaded: "Upload cannot be retrieved from the blockchain because it has not been committed: %{upload}"
+    failed_download: "Failed to retrieve upload from the blockchain: %{upload}"
+    failed_perform: "Failed to retrieve upload from the blockchain: %{upload} %{message}"
+
+  job_mailer:
+    error_subject: "%{app_title} Error: %{type}"

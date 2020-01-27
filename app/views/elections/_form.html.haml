@@ -1,0 +1,10 @@
+- set_page_model(election)
+= bootstrap_form_for(election, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9') do |form|
+  = form_field(form, :text_field, :name, autofocus: true)
+  = form_field(form, :text_field, :description)
+  = form.form_group do
+    = form_field(form, :check_box, :public)
+  = form_field(form, :url_field, :survey_url)
+
+  = render partial: 'shared/form_mandatory', locals: { form: form }
+  = render partial: 'shared/form_buttons', locals: { form: form }

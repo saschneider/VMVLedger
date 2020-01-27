@@ -1,0 +1,17 @@
+#
+# Audit logs fixtures.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+log_no_user:
+  user:
+  action: /verify
+  status: 200
+
+log_user:
+  user: user1
+  action: /verify
+  status: 200

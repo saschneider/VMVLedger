@@ -1,0 +1,11 @@
+%header
+  %nav.navbar.navbar-expand-md.navbar-light.navbar-bg.fixed-top
+    .container
+      = link_to root_path, class: 'navbar-brand' do
+        = image_tag 'surrey.png', alt: t('surrey'), title: t('surrey')
+      %button.navbar-toggler{ type: 'button', data: { toggle: 'collapse', target: '#navbar', aria: { controls: 'navbar', expanded: false, label: t('shared.controls.toggle') } } }
+        %span.navbar-toggler-icon
+
+      #navbar.navbar-collapse.collapse
+        - if content_for? :menu
+          = yield :menu

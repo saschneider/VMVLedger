@@ -1,0 +1,15 @@
+- set_page_model(service)
+= bootstrap_form_for(service, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9') do |form|
+  = form.form_group do
+    = form_field(form, :check_box, :ui_enabled, autofocus: true)
+  = form.form_group do
+    = form_field(form, :check_box, :jobs_enabled)
+  = form_field(form, :text_area, :nodes, control_col: 'col-sm-9', rows: 5)
+  = form_field(form, :text_field, :retrieve_interval, control_col: 'col-sm-3')
+  = form.form_group do
+    = form_field(form, :check_box, :download_from_blockchain)
+  = form_field(form, :email_field, :verify_email, control_col: 'col-sm-5')
+  = form_field(form, :text_area, :full_length_field, control_col: 'col-sm-9', rows: 1)
+
+  = render partial: 'shared/form_mandatory', locals: { form: form }
+  = render partial: 'shared/form_buttons', locals: { form: form }

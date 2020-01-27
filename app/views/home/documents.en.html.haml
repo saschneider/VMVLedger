@@ -1,0 +1,44 @@
+- specific_title [t('shared.titles.documents')]
+- add_breadcrumb t('shared.titles.documents'), request.path
+- content_for :menu do
+  = render 'shared/menu'
+
+- cache do
+  .container
+    %h1= t('shared.titles.documents')
+    %p.lead
+      %b Verify My Vote (VMV)
+      is an implementation of the
+      = link_to(t('selene'),t('selene_web'), target: '_blank')
+      system, adapted to work with the
+      = link_to(t('ers'),t('ers_web'), target: '_blank')
+      Internet voting system, and to make use of distributed ledger technology to assure the integrity of the election verifiability data.
+
+  .container
+    %p Download documentation and source code for the project from the table below by selecting an item:
+    .row
+      :ruby
+        links = [
+          { path: asset_path('verifiable_voting.pdf'), icon: 'file-pdf', title: 'Verifiable voting', description: 'Description of verifiable voting' },
+          { path: t('selene_web'), icon: 'file-pdf', title: t('selene'), description: 'Selene: Voting with Transparent Verifiability and Coercion-Mitigation' },
+          { path: asset_path('vmv.pdf'), icon: 'file-pdf', title: 'Verify My Vote', description: 'VMV: Augmenting Internet Voting Systems with Selene Verifiability using Permissioned Distributed Ledger' },
+          { path: asset_path('survey.pdf'), icon: 'file-pdf', title: 'Survey information', description: 'Information for survey participants' },
+          { path: asset_path('design.pdf'), icon: 'file-pdf', title: 'Software design', description: 'Software design document for VMV' },
+          { path: asset_path('manual.pdf'), icon: 'file-pdf', title: 'Software user manual', description: 'Software user manual for VMV' },
+          { path: asset_path('cryptography.zip'), icon: 'file-archive', title: 'Selene implementation', description: 'Source code: implementation of Selene within VMV' },
+          { path: asset_path('ledger.zip'), icon: 'file-archive', title: 'Distributed ledger interface implementation', description: 'Source code: implementation of the distributed ledger interface within VMV' },
+        ]
+    .table-responsive
+      %table.table.table-hover.table-sm.table-bordered
+        %thead.thead-light
+          %tr
+            %th.text-center Document
+            %th.text-center Description
+        %tbody
+          - links.each do |link|
+            %tr{ data: { href: link[:path] } }
+              %td.align-middle.text-center
+                = link_to link[:path] do
+                  = fa_icon "#{link[:icon]} 2x", title: link[:title]
+                  %span.sr-only= link[:title]
+              %td.align-middle= link[:description]

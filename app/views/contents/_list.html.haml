@@ -1,0 +1,40 @@
+- if contents.count <= 0
+  %p.lead.border.border-danger.rounded.p-2.alert-danger= t('.no_content')
+- else
+  %p= t('.select')
+  - number_of_fields = field_names.compact.count
+  - column_length = 80 / number_of_fields
+
+  = paginate contents, count: contents.total_count, remote: true
+  %p.d-flex.flex-wrap.align-items-center.justify-content-end.h-100
+    %span.small= t('shared.controls.sort')
+    %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(:sequence, t('activerecord.attributes.content.sequence'))
+    - field_names.each_with_index do |field_name, i|
+      - unless field_name.nil?
+        %span.btn.btn-sm.btn-light.ml-1.mt-1= sortable(Content.field_index_to_sym(i), truncate(t("fields.#{field_name}", default: field_name.titleize), length: [column_length, 35].max))
+
+  .row
+    .table-responsive
+      %table.table.table-hover.table-sm.table-bordered
+        %thead.thead-light
+          %tr
+            %th.text-center= sortable(:sequence, t('activerecord.attributes.content.sequence'))
+            - field_names.each_with_index do |field_name, i|
+              - unless field_name.nil?
+                %th.text-center= sortable(Content.field_index_to_sym(i), truncate(t("fields.#{field_name}", default: field_name.titleize), length: [column_length, 35].max))
+        %tbody
+          - contents.each_with_index do |content|
+            - highlight = false
+            - highlight = content[Content.field_index_to_sym(params[:field].to_i)] == params[:value] if !params[:field].blank? && !params[:value].blank?
+            - if content.sequence > 0
+              %tr{ class: highlight ? 'table-success' : '', data: { href: content_path(content) } }
+                %td.text-center= content.sequence
+                - field_names.each_with_index do |field_name, i|
+                  - unless field_name.nil?
+                    - value = content[Content.field_index_to_sym(i)]
+                    - value = value.gsub(/\s+/, ' ') unless value.nil?
+                    %td.text-center= @full_length_fields.any? { |name| name == field_name } ? value : truncate(value, length: [column_length, 20].max)
+
+  - if contents.size > 1
+    :javascript
+      VMV.Table.stickyHeader('.table-responsive');

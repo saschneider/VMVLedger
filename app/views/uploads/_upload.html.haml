@@ -1,0 +1,22 @@
+= bootstrap_form_for(upload, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9') do |form|
+  = form_field(form, :text_field, :election_id, value: upload.election.name, disabled: true)
+  = form_field(form, :text_field, :file_type_id, value: upload.file_type.name, disabled: true)
+  = form_field(form, :text_field, :status, value: t("activerecord.attributes.job.#{upload.status}"), control_col: 'col-sm-3', disabled: true)
+  - if upload.file.attached?
+    = form_field(form, :text_field, :file, disabled: true, value: upload.file.filename, append: link_to(t('shared.controls.download'), download_upload_path(upload), class: 'btn btn-primary'))
+    - if upload.address
+      = form_field(form, :text_field, :address, disabled: true)
+      = form_field(form, :text_field, :checksum, disabled: true)
+      = form_field(form, :text_field, :file, disabled: true, value: upload.file.filename, label: t('activerecord.attributes.upload.blockchain'), append: link_to(t('shared.controls.download'), blockchain_upload_path(upload), class: 'btn btn-primary'))
+  = form.form_group do
+    = form_field(form, :check_box, :public, disabled: true)
+
+  - if upload.failed? && policy(Upload).recommit?
+    = form.form_group do
+      = link_to t('shared.controls.recommit'), recommit_upload_path(upload), class: 'btn btn-danger', method: :post, data: { confirm: t('.recommit') } if policy(Upload).recommit?
+
+  - if upload.success? && policy(Upload).retrieve?
+    = form.form_group do
+      = link_to t('shared.controls.retrieve'), retrieve_upload_path(upload), class: 'btn btn-danger', method: :post, data: { confirm: t('.retrieve') } if policy(Upload).retrieve?
+
+  = render partial: 'shared/show_buttons', locals: { form: form, model: upload, name: upload.file_type.name }

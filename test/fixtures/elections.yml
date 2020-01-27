@@ -1,0 +1,15 @@
+#
+# Elections fixtures.
+#
+# @author Matthew Casey
+#
+# (c) University of Surrey 2019
+#
+
+public_election:
+  name: Public Election
+  public: true
+
+private_election:
+  name: Private Election
+  public: false

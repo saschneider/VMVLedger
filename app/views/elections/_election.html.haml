@@ -1,0 +1,8 @@
+= bootstrap_form_for(election, layout: :horizontal, label_col: 'col-sm-3', control_col: 'col-sm-9') do |form|
+  = form_field(form, :text_field, :name, autofocus: true, disabled: true)
+  = form_field(form, :text_field, :description, disabled: true)
+  = form.form_group do
+    = form_field(form, :check_box, :public, disabled: true)
+  = form_field(form, :url_field, :survey_url, disabled: true)
+
+  = render partial: 'shared/show_buttons', locals: { form: form, model: election, name: election.name }

@@ -1,0 +1,8 @@
+Dear User,
+\
+= "#{t('app_title')} has encountered an error at #{l(Time.current)}:"
+\
+= @error.message
+- if @error.backtrace
+  - @error.backtrace.each do |trace|
+    = "#{trace}\n"
