@@ -55,7 +55,7 @@ gem 'daemons', '~> 1.2', '>= 1.2.3'
 
 # Use authentication via Devise and permissions with pundit.
 gem 'bcrypt', '~> 3.1'
-gem 'devise', '~> 4.6.1'
+gem 'devise', '~> 4.7.1'
 gem 'pundit', '~> 2.0'
 
 # To customise the robots.txt file per environment.
