@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.8'
 # View template languages and support.
 gem 'sass-rails', '~> 5.0'
 gem 'haml-rails', '~> 1.0.0'
-gem 'bootstrap', '~> 4.2'
+gem 'bootstrap', '~> 4.3'
 gem "bootstrap_form", '>= 4.1'
 gem 'data-confirm-modal', '~> 1.6', '>= 1.6.2'
 
