@@ -43,7 +43,7 @@ gem 'data-confirm-modal', '~> 1.6', '>= 1.6.2'
 gem 'gon', '~> 6.2'
 
 # Pagination and navigation.
-gem 'kaminari', '~> 1.1.1'
+gem 'kaminari', '~> 1.2.1'
 gem 'breadcrumbs_on_rails', '~> 3.0', '>= 3.0.1'
 
 # Use Mini Magick for ActiveStorage.
