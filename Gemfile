@@ -40,7 +40,7 @@ gem "bootstrap_form", '>= 4.1'
 gem 'data-confirm-modal', '~> 1.6', '>= 1.6.2'
 
 # JavaScript variables.
-gem 'gon', '~> 6.2'
+gem 'gon', '~> 6.4'
 
 # Pagination and navigation.
 gem 'kaminari', '~> 1.1.1'
