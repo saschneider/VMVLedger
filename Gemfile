@@ -65,7 +65,7 @@ gem 'roboto', '~> 1.0'
 gem 'terrapin', '~> 0.6'
 
 # Be able to parse XML.
-gem 'nokogiri', '~> 1.10'
+gem 'nokogiri', '~> 1.12'
 
 # Posting multi-part form data.
 gem 'multipart-post', '~> 2.0'
