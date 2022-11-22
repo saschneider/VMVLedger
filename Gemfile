@@ -114,7 +114,7 @@ group :production do
   gem 'mini_racer', '~> 0.2'
 
   # Memchached caching.
-  gem 'dalli', '~> 2.7', '>= 2.7.9'
+  gem 'dalli', '~> 3.2'
   gem 'connection_pool', '~> 2.2', '>= 2.2.2'
 end
 
